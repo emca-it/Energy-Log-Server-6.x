@@ -18,5 +18,5 @@ The „Markdown widget" views is used to place text e.g. information
 about the dashboard, explanations and instruction on how to navigate.
 Markdown language was used to format the text (the most popular use is
 GitHub). 
-More information and instruction can be found at this link:\
-https://help.github.com/categories/writing-on-github/
+More information and instruction can be found at this link:
+[https://help.github.com/categories/writing-on-github/](https://help.github.com/categories/writing-on-github/)

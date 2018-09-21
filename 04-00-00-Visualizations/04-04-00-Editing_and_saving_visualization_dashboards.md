@@ -64,6 +64,6 @@ give it a name and click the button
 
 ## Load ##
 To load the visualization, go to the "Management Object"
- -> "Saved Object" -> "Visualizations" select it in the list. From this place, 
+ -> "Saved Object" -> "Visualizations" select it from the list. From this place, 
 we can also go into advanced editing mode. To view of the visualization 
 use ![](/media/media/image17_js.png) button.

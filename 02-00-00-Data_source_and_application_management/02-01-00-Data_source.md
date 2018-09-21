@@ -24,8 +24,8 @@ Below is an example of several of the many available Logstash plugins:
 
 Both Elasticsearch and Logstash are free Open-Source solutions.
 
-More information about Elasticsearch module can be find at:\
-https://github.com/elastic/elasticsearch
+More information about Elasticsearch module can be find at:
+[https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)
 
-List of available Logstash plugins:\
-https://github.com/elastic/logstash-docs/tree/master/docs/plugins
+List of available Logstash plugins:
+[https://github.com/elastic/logstash-docs/tree/master/docs/plugins](https://github.com/elastic/logstash-docs/tree/master/docs/plugins)

@@ -40,10 +40,10 @@ Optionally you can:
 - configure integration with Active Directory and SSO servers. You can find necessary information in [12-00-00-Integration_with_AD](/12-00-00-Integration_with_AD/12-00-00-Integration_with_AD.md) and [13-00-00-Windows-SSO](/13-00-00-Windows-SSO/13-00-00-Windows-SSO.md);
 - install and conigure monitoring with Marver:
 
-	cd /usr/share/elasticsearch
-	sudo bin/plugin install license
-	sudo bin/plugin install marvel-agent
-	systemctl restart elasticsearch
+		cd /usr/share/elasticsearch
+		sudo bin/plugin install license
+		sudo bin/plugin install marvel-agent
+		systemctl restart elasticsearch
 
 - enable predictive functionality in Intelligence module:
 

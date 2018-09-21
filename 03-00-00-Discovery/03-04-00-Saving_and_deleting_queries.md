@@ -3,7 +3,7 @@
 
 Saving queries enables you to reload and use them in the future. 
 
-##Save query##
+## Save query ##
 To save query, click on the "Save" button under on the query bar:
 
 ![](/media/media/image16.png) 
@@ -20,7 +20,7 @@ at the top of the page, and select saved search from the search list:
 
 Additional you can use "Saved Searchers Filter.." to filter the search list.
 
-##Open query##
+## Open query ##
 To open a saved query from the search list, you can click on the name of the query 
 you are interested in.
 
@@ -34,7 +34,7 @@ so that we can change the query on at a lower level.
 It is a powerful tool designed for advanced users, designed to modify 
 the query and the way it is presented by Energy Log Server.
 
-##Delete query##
+## Delete query ##
 To delete a saved query, open it from the search list, and
 then click on the button ![](/media/media/image23.png) . 
 

@@ -24,5 +24,5 @@ and consists of several fields:
     after which time exported file with CSV extension have to be removed
 -   **Delete Exported PDFs (in days)** field - in this field we specify
     after which time exported file with PDF extension have to be removed
--   To each field is assigned "Submit" button thanks to which we can confirm the
-    changes.
+
+To each field is assigned "Submit" button thanks to which we can confirm the changes.

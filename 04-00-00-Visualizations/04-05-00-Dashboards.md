@@ -37,6 +37,6 @@ and give it a name.
 
 ## Load ##
 To load the Dashboard, go to the "Management Object"
- -> "Saved Object" -> "Dashborad" select it in the list. From this place, 
+ -> "Saved Object" -> "Dashborad" select it from the list. From this place, 
 we can also go into advanced editing mode. To view of the visualization 
 use ![](/media/media/image17_1_js.png) button.

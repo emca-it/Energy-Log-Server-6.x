@@ -108,6 +108,7 @@ Table of content
 	- [16-01-06-Logstash-Output_to_Elasticsearch.md](16-00-00-Logstash/16-01-06-Logstash-Output_to_Elasticsearch.md)	
 	- [16-01-07-Logstash-naemon_beat_example.md](16-00-00-Logstash/16-01-07-Logstash-naemon_beat_example.md)	
 	- [16-01-08-Logstash-perflogs_example.md](16-00-00-Logstash/16-01-08-Logstash-perflogs_example.md)	
+- [CHANGELOG.md](CHANGELOG.md)	
 - [index.md](index.md)	
 - [index.rst](index.rst)	
 - [README.md](README.md)	

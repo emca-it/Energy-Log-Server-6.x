@@ -6,7 +6,6 @@ energy_logserver_6x_doc User Guide
         :caption: Introduction
 
        00-00-00-About.md
-       CHANGELOG.md
        01-00-00-Introduction/01-01-00-Introduction.md
        01-00-00-Introduction/01-02-00-Elasticsearch.md
        01-00-00-Introduction/01-03-00-Kibana.md
@@ -171,3 +170,4 @@ energy_logserver_6x_doc User Guide
        16-00-00-Logstash/16-01-06-Logstash-Output_to_Elasticsearch.md
        16-00-00-Logstash/16-01-07-Logstash-naemon_beat_example.md
        16-00-00-Logstash/16-01-08-Logstash-perflogs_example.md
+       CHANGELOG.md

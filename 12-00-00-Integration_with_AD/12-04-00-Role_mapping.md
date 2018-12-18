@@ -18,9 +18,9 @@ bank:
 	"CN=security,OU=lab,DC=dev,DC=it,DC=example,DC=com"
 
 
-How to the mapping mechanism works ?
+How do the mapping mechanism work?
 An AD user log in to Energy Log Server. In the application there is a
-admin role, which through the file role-mapping .yml binds to the name
+admin role, which through the file role-mapping.yml binds to the name
 of the admin role to which the Admins container from AD is assigned.
 It is enough for the user from the AD account to log in to the
 application with the privileges that are assigned to admin role in 
@@ -32,7 +32,7 @@ Similar, the mechanism will work if we have a role with an arbitrary
 name created in Energy Log Server Logistics and connected to the name of the
 role-mappings.yml and existing in AD any container.
 
-Below a screenshot of the console on which are marked accounts that
+Below is a screenshot of the console on which are marked accounts that
 were created by uesrs logging in from AD
 
 ![](/media/media/image85_js.png)

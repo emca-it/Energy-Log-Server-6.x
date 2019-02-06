@@ -1,6 +1,6 @@
-#Changing default users for services#
+# Changing default users for services #
 
-##Change Kibana User
+## Change Kibana User ##
 
 Edit file */etc/systemd/system/kibana.service*
 
@@ -16,7 +16,7 @@ Add appropriate permission:
 
 		chown newuser: /usr/share/kibana/ /etc/kibana/ -R
 
-##Change Elasticsearch User
+## Change Elasticsearch User ##
 
 Edit */usr/lib/tmpfiles.d/elasticsearch.conf* and change user name and group:
 
@@ -35,7 +35,7 @@ Add appropriate permission:
 
 		chown -R newuser: /var/lib/elasticsearch /usr/share/elasticsearch /etc/elasticsearch /var/log/elasticsearch
 
-##Change Logstash User
+## Change Logstash User ##
 
 Create directory:
 

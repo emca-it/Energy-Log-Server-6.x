@@ -15,6 +15,7 @@ Table of content
 	- [02-03-00-First_configuration_steps.md](02-00-00-Data_source_and_application_management/02-03-00-First_configuration_steps.md)	
 	- [02-04-00-Initial_login.md](02-00-00-Data_source_and_application_management/02-04-00-Initial_login.md)	
 	- [02-05-00-Index_selection.md](02-00-00-Data_source_and_application_management/02-05-00-Index_selection.md)	
+	- [02-06-00-Changing_default_users_for_services.md](02-00-00-Data_source_and_application_management/02-06-00-Changing_default_users_for_services.md)	
 - [03-00-00-Discovery](03-00-00-Discovery)	
 	- [03-01-00-Time_settings_and_refresh.md](03-00-00-Discovery/03-01-00-Time_settings_and_refresh.md)	
 	- [03-02-00-Fields.md](03-00-00-Discovery/03-02-00-Fields.md)	

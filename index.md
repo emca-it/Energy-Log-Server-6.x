@@ -114,6 +114,8 @@ Table of content
 	- [17-02-00-Sending_Energy-Log-Server_performance_data_to_Elasticsearch_node.md](17-00-00-Integrations/17-02-00-Sending_Energy-Log-Server_performance_data_to_Elasticsearch_node.md)	
 	- [17-03-00-The_Grafana_insalation.md](17-00-00-Integrations/17-03-00-The_Grafana_insalation.md)	
 	- [17-04-00-The_Beats_configuration.md](17-00-00-Integrations/17-04-00-The_Beats_configuration.md)	
+- [18-00-00-Troubleshooting](18-00-00-Troubleshooting)	
+	- [18-01-00-Recovery_default_base_indexes.md](18-00-00-Troubleshooting/18-01-00-Recovery_default_base_indexes.md)	
 - [CHANGELOG.md](CHANGELOG.md)	
 - [index.md](index.md)	
 - [index.rst](index.rst)	

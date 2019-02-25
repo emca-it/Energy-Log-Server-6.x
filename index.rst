@@ -62,6 +62,7 @@ energy_logserver_6x_doc User Guide
 	06-00-00-User_roles_and_object_management/06-03-00-Managing_roles.md
 	06-00-00-User_roles_and_object_management/06-04-00-Managing_permissions.md
 	06-00-00-User_roles_and_object_management/06-05-00-Default_users_and_passwords.md
+	06-00-00-User_roles_and_object_management/06-05-01-Changing_password_for_the_system_account.md
 
 .. toctree::
         :maxdepth: 2
@@ -126,6 +127,7 @@ energy_logserver_6x_doc User Guide
 	12-00-00-Integration_with_AD/12-02-00-AD_configuration.md
 	12-00-00-Integration_with_AD/12-03-00-Configure_SSL_suport_for_AD_authentication.md
 	12-00-00-Integration_with_AD/12-04-00-Role_mapping.md
+	12-00-00-Integration_with_AD/12-05.00-Password_encryption.md
 
 .. toctree::
         :maxdepth: 2

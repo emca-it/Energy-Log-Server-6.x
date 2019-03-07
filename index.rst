@@ -24,6 +24,7 @@ energy_logserver_6x_doc User Guide
 	02-00-00-Data_source_and_application_management/02-05-00-Index_selection.md
 	02-00-00-Data_source_and_application_management/02-06-00-Changing_default_users_for_services.md
 	02-00-00-Data_source_and_application_management/02-07-00-Custom_instalation.md
+	02-00-00-Data_source_and_application_management/02-07-00-Custom_installation.md
 
 .. toctree::
         :maxdepth: 2

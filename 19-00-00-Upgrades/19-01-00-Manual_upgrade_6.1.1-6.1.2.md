@@ -30,7 +30,6 @@ The Energy Log Server Log Anlytics 6.1.1 update should be done by copying new ve
 
 ## Client Node update ##
 
-1. 
 1. Check if the following RPM packages have been installed:
 
 		yum install fontconfig freetype freetype-devel fontconfig-devel libstdc++ urw-fonts net-tools ImageMagick ghostscript poppler-utils

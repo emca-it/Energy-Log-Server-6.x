@@ -1,27 +1,5 @@
 #Upgrade the Energy Log Server from RPM packets#
 
-## Data node update ##
-
-1. Stop the Elasticsearch service
-		
-		systemctl stop elasticsearch
-
-1. Backup current Elasticsearch configuration and plugin
-
-		cp /etc/elasticsearch/* /etc/elasticsearch.backup/
-		cp –rf /usr/share/elasticsearch/plugins/elasticsearch-auth /root/backup/
-
-1. Run update with following command:
-
-		rpm -Uvh --replacefiles data-node-6.1.2-1.x86_64.rpm
-
-1. Grant the appropriate permissions for directories:
-
-		chown -R elasticseach:elasticsearch /usr/share/elasticsearch
-
-1. Start the Elasticsearch service
-
-		systemctl start elasticsearch
 
 ## Client Node update ##
 

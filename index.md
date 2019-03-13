@@ -121,7 +121,7 @@ Table of content
 	- [18-01-00-Recovery_default_base_indexes.md](18-00-00-Troubleshooting/18-01-00-Recovery_default_base_indexes.md)	
 - [19-00-00-Upgrades](19-00-00-Upgrades)	
 	- [19-01-00-Manual_upgrade.md](19-00-00-Upgrades/19-01-00-Manual_upgrade.md)	
-	- [19-01-00-Upgrade_from_RPM.md](19-00-00-Upgrades/19-01-00-Upgrade_from_RPM.md)	
+	- [19-01-00-Manual_upgrade_6.1.1-6.1.2.md](19-00-00-Upgrades/19-01-00-Manual_upgrade_6.1.1-6.1.2.md)	
 - [CHANGELOG.md](CHANGELOG.md)	
 - [index.md](index.md)	
 - [index.rst](index.rst)	

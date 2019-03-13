@@ -59,15 +59,15 @@ The Energy Log Server Log Anlytics update should be done by copying new versions
 
 		cp -rf kibana/plugins/* /usr/share/kibana/plugins/
 
-1.Copy the Alert plugin from the installation directory
+1. Copy the Alert plugin from the installation directory
 
 		/bin/cp -rf alert /opt/alert
 
-1. Recover Alert folder contain alert set.
+1. Copy Alert rules folder
 
 		cp -pr /root/backup/alert/rules/* /opt/alert/rules/
 
-1.Copy the Alert plugin from the installation directory
+1. Copy the Alert plugin from the installation directory
 
 		 /bin/cp -rf ai /opt/ai
 

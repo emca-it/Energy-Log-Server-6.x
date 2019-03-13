@@ -1,4 +1,4 @@
-#Manual upgrade the Energy Log Server#
+# Manual upgrade the Energy Log Server #
 
 The Energy Log Server Log Anlytics update should be done by copying new versions of files to the appropriate directories. The source installation directory is: */root/pkg_6x*
 

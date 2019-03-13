@@ -43,9 +43,33 @@ The Energy Log Server Log Anlytics update should be done by copying new versions
 
 		rm -rf /usr/share/kibana/plugins/*
 
+1. Backup current Alert rules folder
+
+		cp -pr /opt/alert/rules /root/backup/alert/rules
+
+1. Delete old version of Alert plugin
+
+		rm -rf /opt/alert
+
+1. Delete old version of AI plugin
+
+		rm -rf /opt/ai
+
 1. Copy the Kibana plugins from the installation directory
 
 		cp -rf kibana/plugins/* /usr/share/kibana/plugins/
+
+1.Copy the Alert plugin from the installation directory
+
+		/bin/cp -rf alert /opt/alert
+
+1. Recover Alert folder contain alert set.
+
+		cp -pr /root/backup/alert/rules/* /opt/alert/rules/
+
+1.Copy the Alert plugin from the installation directory
+
+		 /bin/cp -rf ai /opt/ai
 
 1. Unpack the node.js modules
 

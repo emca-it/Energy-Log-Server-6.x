@@ -2,7 +2,7 @@
 --------------------------------------------------------------------
 
 
-## 1. Teaching MLP networks and choosing the algorithm to use: ##
+## Teaching MLP networks and choosing the algorithm to use: ##
 
 1. Go to the AI Learn tab,
 1. We introduce the network teaching parameters,

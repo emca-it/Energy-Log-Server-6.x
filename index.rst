@@ -196,3 +196,4 @@ energy_logserver_6x_doc User Guide
         :caption: Upgrades
 
 	19-00-00-Upgrades/19-01-00-Manual_upgrade_6.1.1-6.1.2.md
+	19-00-00-Upgrades/19-02-00-Upgrade_with_RPM_6.1.1-6.1.2.md

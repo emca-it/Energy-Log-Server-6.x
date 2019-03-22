@@ -2,8 +2,8 @@
 
 If you lost or damage following index:
 		
-		|Index name		 | Index ID              |
-		|----------------|-----------------------|
+        |Index name		 | Index ID              |
+        |----------------|-----------------------|
         | .security      |Pfq6nNXOSSmGhqd2fcxFNg |
         | .taskmanagement|E2Pwp4xxTkSc0gDhsE-vvQ |
         | alert_status   |fkqks4J1QnuqiqYmOFLpsQ |
@@ -58,12 +58,14 @@ You may to recover it from default installation folder with following steps:
 		systemctl start elasticsearch
 
 1. Wait for yellow state of Elasticsearch cluster and then enable shard allocation
+
 		PUT _cluster/settings
 		{
 		  "persistent": {
 		    "cluster.routing.allocation.enable": "all"
 		  }
 		}
+
 1. Wait for green state of Elasticsearch cluster and then start the Logstash instances
 
-		systemctl stop logstash
+		systemctl start logstash

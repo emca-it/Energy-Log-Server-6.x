@@ -6,7 +6,6 @@ Energy-Log-Server-6.x User Guide
         :caption: Introduction
 
 	00-00-00-About.md
-	CHANGELOG.md
 	01-00-00-Introduction/01-00-00-Introduction.md
 
 .. toctree::
@@ -115,10 +114,11 @@ Energy-Log-Server-6.x User Guide
         :maxdepth: 2
         :caption: Upgrades
 
-	19-00-00-Upgrades/19-00-00-Upgrades.md
+       19-00-00-Upgrades/19-00-00-Upgrades.md
 
 .. toctree::
         :maxdepth: 2
         :caption: Agents_module
 
-	20-00-00-Agents_module/20-00-00-Agents_module.md
+       20-00-00-Agents_module/20-00-00-Agents_module.md
+       CHANGELOG.md

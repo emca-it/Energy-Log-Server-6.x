@@ -1,3 +1,0 @@
-# Elasticsearch Document API #
-
-

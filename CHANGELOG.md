@@ -1,5 +1,5 @@
 # **CHANGELOG** #
-## 6.1.3 ##
+## Version 6.1.3 ##
 ### Added ###
 - Securing all the endpoints of elasticsearch APIs
 - New configuration option: elastfilter.proxytimeout
@@ -14,7 +14,7 @@ https://play.google.com/store/apps/details?id=com.logserver.mobile
 - bugfix: Performance issue while using non admin account
 - bugfix: Java exception while useing elasticsearch-plugin (ES_JAVA_OPTS moved to jvm.options)
 - bugfix: default encoding for es2csv changed to utf-8 (csv export with polish characters)
-## 6.1.2 ##
+## Version 6.1.2 ##
 ### Added ###
 - Intelligence API
 - Kibana API update
@@ -36,7 +36,7 @@ https://play.google.com/store/apps/details?id=com.logserver.mobile
 - bugfix: java.policy - binding elasticsearch to 0.0.0.0
 - bugfix: service_principal_name - is no longer required directive when configuring work with AD/LDAP
 
-## 6.1.1 ##
+## Version 6.1.1 ##
 ### Added ###
 - Default template with compression only [elasticsearch]
 - Secured LDAP/AD password in configuration files [elasticsearch]
@@ -44,7 +44,7 @@ https://play.google.com/store/apps/details?id=com.logserver.mobile
 - bugfix: filter config - linux-geoip [logstash]
 - bugfix: intelligence template
 
-## 6.1.0 ##
+## Version 6.1.0 ##
 - Upgrade core to 6.2.4 [elasticsearch,kibana,logstash]
 - Support for all beats agents in filters and dashboards
 - Providing default Audit and Alert dashboard
@@ -64,7 +64,7 @@ https://play.google.com/store/apps/details?id=com.logserver.mobile
 - bugfix: Percentagematch and Metricaggregation rules fix in Alert module
 - bugfix: Deleting Alert rule cause Alert Disable
 
-## 6.0.2 ##
+## Version 6.0.2 ##
 ### Added ###
 - SSO onboarded to 6.x stack
 - Custom Logo on PDF Reports including title and comment
@@ -80,7 +80,7 @@ https://play.google.com/store/apps/details?id=com.logserver.mobile
 - bugfix: Missing directories for reports
 - bugfix: Removed unessesary files from deps
 
-## 6.0.1 ##
+## Version 6.0.1 ##
 ### Added ###
 - Functional indexess with dots .kibana, .security, .auth
 - Login module onboarded to 6.x stack

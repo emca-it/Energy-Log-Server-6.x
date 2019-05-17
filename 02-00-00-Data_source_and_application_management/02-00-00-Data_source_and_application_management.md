@@ -83,14 +83,14 @@ To install and configure Energy Log Server on the CentOS Linux system you should
 
 - go to the application directory and run installation script as a root user:
 
-		cd /roo/insatll
+		cd /root/insatll
 		./install.sh
 
 ### Installation steps ###
 
-During instalation you will be ask about following tasks:
+During installation you will be ask about following tasks:
 
-- add firewall exeption on ports 22(ssh), 5044, 5514 (Logstash), 5601 (Kibana), 9200 (Elastisearch), 9300 (ES cross-JVM);
+- add firewall exception on ports 22(ssh), 5044, 5514 (Logstash), 5601 (Kibana), 9200 (Elastisearch), 9300 (ES cross-JVM);
 - installation of Java environment (Open-JDK), if you use your own Java environment - answer "N";
 - installation of Logstash application;
 - configuration of Logstash with custom Energy Log Server configuration;
@@ -110,7 +110,7 @@ Optionally you can:
 - configure Energy Log Server perf_data to integrated with the Energy Log Server Monitor;
 - configure naemonLogs to integrated with the Naemon;
 - configure integration with Active Directory and SSO servers. You can find necessary information in [12-00-00-Integration_with_AD](/12-00-00-Integration_with_AD/12-00-00-Integration_with_AD.md) and [13-00-00-Windows-SSO](/13-00-00-Windows-SSO/13-00-00-Windows-SSO.md);
-- install and conigure monitoring with Marver:
+- install and configure monitoring with Marvel:
 
 		cd /usr/share/elasticsearch
 		sudo bin/plugin install license
@@ -421,7 +421,7 @@ If you need to install Energy Log Server in non-default location, use the follow
 				firewall-cmd --zone=public --add-masquerade --permanent
 				firewall-cmd --zone=public --add-forward-port=port=443:proto=tcp:toport=5601 --permanent
 				firewall-cmd --reload
-## Plugins management in the Elasticearch ##
+## Plugins management in the Elasticsearch ##
 
 Base installation of the Energy Log Server contains the 
 *elasticsearch-auth* plugin.

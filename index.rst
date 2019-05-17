@@ -1,4 +1,4 @@
-OP5-Log-Analytics-6.x User Guide
+Energy Log Server-6.x User Guide
 ------------------------------
 
 .. toctree::

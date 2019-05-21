@@ -162,3 +162,22 @@ To do this use *pass-encrypter.sh* script that is located in the *Utils* directo
 		Enter the string for encryption :
 		new_password
 		Encrypted string : MTU1MTEwMDcxMzQzMg==1GEG8KUOgyJko0PuT2C4uw==
+
+# Integration with Radius #
+
+To use the Radius protocol, install the latest available version of Energy Log Server.
+
+## Configuration ##
+
+The default configuration file is located at `/etc/elasticsearch/properties.yml`:
+
+		# Radius opts
+		#radius.host: "10.4.3.184"
+		#radius.secret: "querty1q2ww2q1"
+		#radius.port: 1812
+
+Use appropriate secret based on config file in Radius server. The secret is configured on `clients.conf` in Radius server. 
+
+In this case, since the plugin will try to do Radius auth then client IP address should be the IP address where the Elasticsearch is deployed.
+
+Every user by default at present get the admin role.

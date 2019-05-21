@@ -172,12 +172,10 @@ To use the Radius protocol, install the latest available version of Energy Log S
 The default configuration file is located at `/etc/elasticsearch/properties.yml`:
 
 		# Radius opts
-		#radius.host: "10.4.3.184"
-		#radius.secret: "querty1q2ww2q1"
-		#radius.port: 1812
+		#radius.host: "RADIUS_SERVER_IP"
+		#radius.secret: "secret_password"
+		#radius.port: 1812 # default radius port
 
 Use appropriate secret based on config file in Radius server. The secret is configured on `clients.conf` in Radius server. 
 
-In this case, since the plugin will try to do Radius auth then client IP address should be the IP address where the Elasticsearch is deployed.
-
-Every user by default at present get the admin role.
+On radius server site, the client has to be set with Energy client host IP.

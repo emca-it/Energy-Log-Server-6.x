@@ -10,10 +10,10 @@ using SSL/TLS. Clients and nodes that connect via SSL/TLS to the LDAP server nee
 server’s certificate or the server’s root CA certificate installed in their keystore or truststore.
 ## AD configuration ##
 
-The AD configuration should be done in the `/etc/elasticsearch/elasticsearch.yml` 
+The AD configuration should be done in the `/etc/elasticsearch/properties.yml` 
 file.
 
-Below is a list of settings to be made in the `elasticsearch.yml` file
+Below is a list of settings to be made in the `properties.yml` file
 (the commented section in the file in order for the AD settings to
 start working, this fragment should be uncommented):
 
@@ -50,7 +50,7 @@ like. (It is important to take the interpreter to read these values
 
 ![](/media/media/image77.png)
 
-After completing the LDAP section entry in the `elasticsearch.yml` file,
+After completing the LDAP section entry in the `properties.yml` file,
 save the changes and restart the service with the command:
 
 	# systemctl restart elasticsearch
@@ -99,14 +99,14 @@ The values for RED should be changed accordingly.
 By doing this, he will ask you to set a password for the trusted
 certificate store. Remember this password, because it must be set in
 the configuration of the Elasticsearch plugin. The following settings
-must be set in the `elasticsearch.yml` configuration for
+must be set in the `properties.yml` configuration for
 SSL:
 
 	ssl.keystore.file: "<path to the trust certificate store>"
 	ssl.keystore.password: "< password to the trust certificate store>"
 ## Role mapping ##
 
-In the `/etc/elasticsearch/elasticsearch.yml` configuration file you can find
+In the `/etc/elasticsearch/properties.yml` configuration file you can find
 a section for configuring role mapping:
 
 	# LDAP ROLE MAPPING FILE`

@@ -139,3 +139,37 @@ filter:
 
 		- query_string:
 		       query: "event_id:(4947 OR 4948 OR 4946 OR 4949 OR 4954 OR 4956 OR 5025)"
+
+## Create Playbook ##
+
+To add a new playbook, go to the **Alert** module, select the **Playbook** tab and then **Create Playbook**
+
+![](/media/media/image116.PNG)
+
+In the **Name** field, enter the name of the new Playbook.
+
+In the **Text** field, enter the content of the Playbook message.
+
+In the **Script** field, enter the commands to be executed in the script.
+
+To save the entered content, confirm with the **Submit** button.
+
+## Playbooks list  ##
+
+To view saved Playbook, go to the ** Alert ** module, select the ** Playbook ** tab and then **Playbooks list**:
+
+![](/media/media/image117.PNG)
+
+To view the content of a given Playbook, select the **Show** button.
+
+To enter the changes in a given Playbook or in its script, select the **Update** button. After making changes, select the **Submit** button.
+
+To delete the selected Playbook, select the **Delete** button.
+
+## Linking Playbooks to alert rule ##
+
+You can add a Playbook to the Alert while creating a new Alert or by editing a previously created Alert.
+
+To add Palybook to the new Alert rule, go to the **Create alert rule** tab and in the **Playbooks** section use the arrow keys to move the correct Playbook to the right window.
+
+To add a Palybook to existing Alert rule, go to the **Alert rule list** tab with the correct rule select the **Update** button and in the **Playbooks** section use the arrow keys to move the correct Playbook to the right window.

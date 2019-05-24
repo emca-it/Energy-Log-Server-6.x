@@ -149,7 +149,7 @@ Playbooks can be enriched with scripts that can be launched together with Playbo
 
 To add a new playbook, go to the **Alert** module, select the **Playbook** tab and then **Create Playbook**
 
-![](/media/media/image116.PNG)
+![](/media/media/image116.png)
 
 In the **Name** field, enter the name of the new Playbook.
 
@@ -161,9 +161,9 @@ To save the entered content, confirm with the **Submit** button.
 
 ### Playbooks list  ###
 
-To view saved Playbook, go to the ** Alert ** module, select the ** Playbook ** tab and then **Playbooks list**:
+To view saved Playbook, go to the **Alert** module, select the **Playbook** tab and then **Playbooks list**:
 
-![](/media/media/image117.PNG)
+![](/media/media/image117.png)
 
 To view the content of a given Playbook, select the **Show** button.
 

@@ -171,7 +171,7 @@ To enter the changes in a given Playbook or in its script, select the **Update**
 
 To delete the selected Playbook, select the **Delete** button.
 
-### Linking Playbooks to alert rule ###
+### Linking Playbooks with alert rule ###
 
 You can add a Playbook to the Alert while creating a new Alert or by editing a previously created Alert.
 

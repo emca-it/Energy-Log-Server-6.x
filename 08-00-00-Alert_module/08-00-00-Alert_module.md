@@ -142,7 +142,7 @@ filter:
 
 ## Playbooks ##
 
-OP5 Log Analytics has a set of predefined set of rules and activities (called Playbook) that can be attached to a registered event in the Alert module.
+Energy Log Server has a set of predefined set of rules and activities (called Playbook) that can be attached to a registered event in the Alert module.
 Playbooks can be enriched with scripts that can be launched together with Playbook.
 
 ### Create Playbook ###

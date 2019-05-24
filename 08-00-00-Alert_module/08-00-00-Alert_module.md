@@ -178,3 +178,72 @@ You can add a Playbook to the Alert while creating a new Alert or by editing a p
 To add Palybook to the new Alert rule, go to the **Create alert rule** tab and in the **Playbooks** section use the arrow keys to move the correct Playbook to the right window.
 
 To add a Palybook to existing Alert rule, go to the **Alert rule list** tab with the correct rule select the **Update** button and in the **Playbooks** section use the arrow keys to move the correct Playbook to the right window.
+
+## Risks ##
+
+Energy Log Server allows you to estimate the risk based on the collected data. The risk is estimated based on the defined category to which the values from 0 to 100 are assigned.
+
+Information on the defined risk for a given field is passed with an alert and multiplied by the value of the Rule Importance parameter.
+
+### Create category ###
+
+To add a new risk Category, go to the **Alert** module, select the **Risks** tab and then **Create Cagtegory**. 
+
+![](/media/media/image118.png)
+
+Enter the **Name** for the new category and the category **Value**.
+
+### Category list ###
+
+To view saved Category, go to the **Alert** module, select the **Risks** tab and then **Categories list**:
+
+![](/media/media/image119.png)
+
+To view the content of a given Category, select the **Show** button.
+
+To change the value assigned to a category, select the **Update** button. After making changes, select the **Submit** button.
+
+To delete the selected Category, select the **Delete** button.
+
+### Create risk ###
+
+To add a new playbook, go to the Alert module, select the Playbook tab and then Create Playbook
+
+![](/media/media/image120.png)
+
+In the **Index pattern** field, enter the name of the index pattern.
+Select the **Read fields** button to get a list of fields from the index.
+From the box below, select the field name for which the risk will be determined.
+
+From the **Timerange field**, select the time range from which the data will be analyzed.
+
+Press the **Read valules** button to get values from the previously selected field for analysis.
+
+Next, you must assign a risk category to the displayed values. You can do this for each value individually or use the check-box on the left to mark several values and set the category globally using the **Set global category** button. To quickly find the right value, you can use the search field.
+
+![](/media/media/image122.png)
+
+After completing, save the changes with the **Submit** button.
+
+### List risk ###
+
+To view saved risks, go to the **Alert** module, select the **Risks** tab and then **Risks list**:
+
+![](/media/media/image121.png)
+
+To view the content of a given Risk, select the **Show** button.
+
+To enter the changes in a given Risk, select the **Update** button. After making changes, select the **Submit** button.
+
+To delete the selected Risk, select the **Delete** button.
+
+### Linking risk with alert rule ###
+
+You can add a Risk key to the Alert while creating a new Alert or by editing a previously created Alert.
+
+To add Risk key to the new Alert rule, go to the **Create alert rule** tab and after entering the index name, select the **Read fields** button and in the **Risk key** field, select the appropriate field name.
+In addition, you can enter the validity of the rule in the **Rule Importance** field (in the range 1-100%), by which the risk will be multiplied.
+
+To add Risk key to the existing Alert rule, go to the **Alert rule list**, tab with the correct rule select the **Update** button. 
+Use the **Read fields** button and in the **Risk key** field, select the appropriate field name.
+In addition, you can enter the validity of the rule in the **Rule Importance** f

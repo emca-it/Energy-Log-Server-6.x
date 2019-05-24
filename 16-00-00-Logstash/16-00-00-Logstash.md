@@ -1,11 +1,11 @@
 # Logstash #
 
 
-The Energy Log Server use Logstash service to dynamically unify data
+The Energy Logserver use Logstash service to dynamically unify data
 from disparate sources and normalize the data into destination of your
 choose. A Logstash pipeline has two required elements, *input* and *output*,
 and one optional element *filter*. The input plugins consume data from a source, the filter plugins modify the data as you specify, and the output plugins write the data to a destination.
-The default location of the Logstash plugin files is: */etc/logstash/conf.d/*. This location contain following Energy Log Server 
+The default location of the Logstash plugin files is: */etc/logstash/conf.d/*. This location contain following Energy Logserver 
 
 Log Analytics default plugins:
 

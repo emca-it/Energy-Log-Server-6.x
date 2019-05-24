@@ -2,7 +2,7 @@
 
 ## Users, roles and settings  ##
 
-Energy Log Server allows to you manage users and permission for
+Energy Logserver allows to you manage users and permission for
 indexes and methods used by them. To do this click the "Config" button from the main menu bar.
 
 ![](/media/media/image38_js.png)
@@ -115,7 +115,7 @@ the sys2 role in the drop-down list choose a role:
 ![](/media/media/image57_js.png)
 
 After selecting, we can see that we already have access to the objects:
-two index patterns syslog2\* and Energy Log Server-\* and on dashboard Windows Events. 
+two index patterns syslog2\* and Energy Logserver-\* and on dashboard Windows Events. 
 There are also appropriate read or updates permissions.
 
 ![](/media/media/image58_js.png)

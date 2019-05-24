@@ -1,7 +1,7 @@
 # Reports #
 
 
-Energy Log Server contains a module for creating reports that can be
+Energy Logserver contains a module for creating reports that can be
 run cyclically and contain only interesting data, e.g. a weekly sales
 report.
 

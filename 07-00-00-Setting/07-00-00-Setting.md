@@ -45,7 +45,7 @@ These fields contain information:
 - Validity field - validity, in this case for 360000 months
 ## Special accounts ##
 
-At the first installation of the Energy Log Server application, apart
+At the first installation of the Energy Logserver application, apart
 from the administrative account (logserver), special applications are
 created in the application: alert, intelligence and scheduler.
 

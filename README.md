@@ -1,2 +1,2 @@
-# Energy Log Server
-Energy Log Server User Guide
+# Energy Logserver
+Energy Logserver User Guide

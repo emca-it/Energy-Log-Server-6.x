@@ -4,7 +4,7 @@
 
 
 In the upper right corner there is a section in which it defines the
-range of time that Energy Log Server will search in terms of conditions contained in
+range of time that Energy Logserver will search in terms of conditions contained in
 the search bar. The default value is the last 15 minutes.
 
 ![](/media/media/image7.png)
@@ -13,13 +13,13 @@ After clicking this selection, we can adjust the scope of search by
 selecting one of the three tabs in the drop-down window:
 
 - **Quick**: contain several predefined ranges that should be clicked.
-- **Relative**: in this windows specify the day from which Energy Log Server should search for data.
+- **Relative**: in this windows specify the day from which Energy Logserver should search for data.
 - **Absolute**: using two calendars we define the time range for which the search results are to be returned.
 
 ![](/media/media/image8.png)
 ## Fields ##
 
-Energy Log Server in the body of searched events, it recognize fields
+Energy Logserver in the body of searched events, it recognize fields
 that can be used to created more precision queries. The extracted
 fields are visible in the left panel. They are divided on three types: 
 timestamp, marked on clock icon 
@@ -71,7 +71,7 @@ This query will return events with status fields that are in the
 range 500 to 599.
 
 ### Operators ###
-The search language used in Energy Log Server allows to you use logical operators
+The search language used in Energy Logserver allows to you use logical operators
 „AND", „OR" and „NOT", which are key and necessary to build more
 complex queries.
 
@@ -82,7 +82,7 @@ complex queries.
 
 -   **OR** is used to search for the events that contain one OR other
    expression, e.g. „status:500" OR "denied". This query will display
-   events that contain word „denied" or status field value of 500. Energy Log Server
+   events that contain word „denied" or status field value of 500. Energy Logserver
    uses this operator by default, so query „status:500" "denied" would
    return the same results.
 
@@ -93,7 +93,7 @@ complex queries.
 
 -   **The above methods** can be combined with each other by building even
    more complex queries. Understanding how they work and joining it, is
-   the basis for effective searching and full use of Energy Log Server.
+   the basis for effective searching and full use of Energy Logserver.
    
    Example of query built from connected logical operations:
    
@@ -137,7 +137,7 @@ so that we can change the query on at a lower level.
 ![](/media/media/image21.png)
 
 It is a powerful tool designed for advanced users, designed to modify 
-the query and the way it is presented by Energy Log Server.
+the query and the way it is presented by Energy Logserver.
 
 ### Delete query ###
 To delete a saved query, open it from the search list, and
@@ -153,6 +153,6 @@ From this level, you can also export saved queries in the same way. To
 do this, you need to click on
 ![](/media/media/image25.png) and choose the save location. The file
 will be saved in .JSON format. If you then want to import such a file to
-Energy Log Server, click on button
+Energy Logserver, click on button
 ![](/media/media/image26.png), at the top of the page and select the
 desired file.

@@ -1,6 +1,6 @@
 # Alert Module #
 
-Energy Log Server allows you to create alerts, i.e. monitoring
+Energy Logserver allows you to create alerts, i.e. monitoring
 queries. These are constant queries that run in the background and
 when the conditions specified in the alert are met, the specify action
 is taken. 
@@ -73,7 +73,7 @@ how many event sit found and how many times it worked.
 
 Also, on this tab, you can recover the alert dashboard, by clicking the "Recovery Alert Dashboard" button.# Type of the Alert module rules #
 
-The various RuleType classes, defined in Energy Log Server-Log-Aalytics. 
+The various RuleType classes, defined in Energy Logserver-Log-Aalytics. 
 An instance is held in memory for each rule, passed all of the data returned by querying Elasticsearch 
 with a given filter, and generates matches based on that data.
 
@@ -142,7 +142,7 @@ filter:
 
 ## Playbooks ##
 
-Energy Log Server has a set of predefined set of rules and activities (called Playbook) that can be attached to a registered event in the Alert module.
+Energy Logserver has a set of predefined set of rules and activities (called Playbook) that can be attached to a registered event in the Alert module.
 Playbooks can be enriched with scripts that can be launched together with Playbook.
 
 ### Create Playbook ###
@@ -181,7 +181,7 @@ To add a Palybook to existing Alert rule, go to the **Alert rule list** tab with
 
 ## Risks ##
 
-Energy Log Server allows you to estimate the risk based on the collected data. The risk is estimated based on the defined category to which the values from 0 to 100 are assigned.
+Energy Logserver allows you to estimate the risk based on the collected data. The risk is estimated based on the defined category to which the values from 0 to 100 are assigned.
 
 Information on the defined risk for a given field is passed with an alert and multiplied by the value of the Rule Importance parameter.
 

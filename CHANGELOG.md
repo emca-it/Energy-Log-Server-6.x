@@ -54,7 +54,7 @@ https://play.google.com/store/apps/details?id=com.logserver.mobile
 - Intelligence Count & Trend improvement
 - Technology specific dashboards : Windows, Linux, Network
 - Technology specific alerts : Windows, Linux, Network
-- Energy Log Server Monitor perf data support with filtering and dashboard
+- Energy Logserver Monitor perf data support with filtering and dashboard
 - UTF-8 support in custom PDF reports
 
 ### CHANGED ###

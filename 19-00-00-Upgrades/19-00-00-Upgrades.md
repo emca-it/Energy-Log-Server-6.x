@@ -1,11 +1,11 @@
 # Upgrades #
-## Manual update of Energy Log Server from version 6.1.1 to 6.1.2 ##
+## Manual update of Energy Logserver from version 6.1.1 to 6.1.2 ##
 
-The Energy Log Server Log Anlytics 6.1.1 update should be done by copying new versions of files to the appropriate directories. The source installation directory is: /root/pkg_6.1.2*
+The Energy Logserver Log Anlytics 6.1.1 update should be done by copying new versions of files to the appropriate directories. The source installation directory is: /root/pkg_6.1.2*
 
 ### Data node update ###
 
-1. Go to installation directory that contain Energy Log Server 6.1.2 files:
+1. Go to installation directory that contain Energy Logserver 6.1.2 files:
 
 		cd /root/pkg_6.1.2
 
@@ -92,7 +92,7 @@ The Energy Log Server Log Anlytics 6.1.1 update should be done by copying new ve
 
 		systemctl start kibana
 		systemctl start alert
-## Upgrade the Energy Log Server with RPM packets ##
+## Upgrade the Energy Logserver with RPM packets ##
 
 ### Data node (every Elasticsearch installation) update ###
 
@@ -115,7 +115,7 @@ The Energy Log Server Log Anlytics 6.1.1 update should be done by copying new ve
 
 1. Run update with following command:
 
-		rpm -Uvh --replacefiles Energy Log Server-log-analytics-client-node-6.1.2-1.x86_64.rpm
+		rpm -Uvh --replacefiles Energy Logserver-log-analytics-client-node-6.1.2-1.x86_64.rpm
 
 1. Give the right permissions to the Kibana directory
 

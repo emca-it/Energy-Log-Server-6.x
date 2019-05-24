@@ -140,7 +140,12 @@ filter:
 		- query_string:
 		       query: "event_id:(4947 OR 4948 OR 4946 OR 4949 OR 4954 OR 4956 OR 5025)"
 
-## Create Playbook ##
+## Playbooks ##
+
+OP5 Log Analytics has a set of predefined set of rules and activities (called Playbook) that can be attached to a registered event in the Alert module.
+Playbooks can be enriched with scripts that can be launched together with Playbook.
+
+### Create Playbook ###
 
 To add a new playbook, go to the **Alert** module, select the **Playbook** tab and then **Create Playbook**
 
@@ -154,7 +159,7 @@ In the **Script** field, enter the commands to be executed in the script.
 
 To save the entered content, confirm with the **Submit** button.
 
-## Playbooks list  ##
+### Playbooks list  ###
 
 To view saved Playbook, go to the ** Alert ** module, select the ** Playbook ** tab and then **Playbooks list**:
 
@@ -166,7 +171,7 @@ To enter the changes in a given Playbook or in its script, select the **Update**
 
 To delete the selected Playbook, select the **Delete** button.
 
-## Linking Playbooks to alert rule ##
+### Linking Playbooks to alert rule ###
 
 You can add a Playbook to the Alert while creating a new Alert or by editing a previously created Alert.
 

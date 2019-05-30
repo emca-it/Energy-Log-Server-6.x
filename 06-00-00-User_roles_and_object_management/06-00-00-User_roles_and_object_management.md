@@ -134,10 +134,11 @@ The table below contains built-in user accounts and default passwords:
 
 	|Address		        |User		  |Password	    |Description                                      |Usage          |
 	|-----------------------|-------------|-------------|-------------------------------------------------|---------------|
-	|https://localhost:5601	|logserver 	  |logserver	| A built-in *superuser* account                  |               |
-	|			            |alert		  |alert		| A built-in account for  the Alert module        |               |  
-	|			            |intelligence |intelligece	| A built-in account for the Intelligence module  | usage for authorizing communication with elasticsearch server, for put and get the data from indexes  | 
-	|			            |scheduler	  |scheduler	|  A built-in account for the Scheduler module    |               | 
+	|https://localhost:5601	|logserver 	  |logserver	|A built-in *superuser* account                  |               |
+	|                       |alert		  |alert		|A built-in account for  the Alert module        |               |  
+	|                       |intelligence |intelligece	|A built-in account for the Intelligence module  | authorizing communication with elasticsearch server | 
+	|                       |scheduler	  |scheduler	|A built-in account for the Scheduler module    |
+	|                       |logstash     |logstash     |A built-in account for authorized comuunication form Logstash
 ## Changing password for the system account ##
 
 After you change password for one of the system account ( alert, intelligence, logserver, scheduler), you must to do appropriate changes in the application files.

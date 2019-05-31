@@ -1,4 +1,4 @@
-Energy Logserver-6.x User Guide
+Energy-Log-Server-6.x User Guide
 ------------------------------
 
 .. toctree::
@@ -121,4 +121,10 @@ Energy Logserver-6.x User Guide
         :caption: Agents_module
 
        20-00-00-Agents_module/20-00-00-Agents_module.md
+
+.. toctree::
+        :maxdepth: 2
+        :caption: Monitoring
+
+       21-00-00-Monitoring/21-00-00-Monitoring.md
        CHANGELOG.md

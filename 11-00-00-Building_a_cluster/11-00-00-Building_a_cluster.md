@@ -40,6 +40,7 @@ There are two important settings:
 - **heap size** - By default, Elasticsearch tells the JVM to use a heap with a minimum (Xms) and maximum (Xmx)
 size of 1 GB. When moving to production, it is important to configure heap size to ensure that 
 Elasticsearch has enough heap available
+
 ## Config files ##
 
 
@@ -59,8 +60,7 @@ in the following configuration files on every node that will be connected to the
 - `/etc/elsticsearch/logging.yml`:
   - `logger: action: DEBUG` - for easier debugging.
 
-##Example setup##
-
+## Example setup ##
 
 Example of the Elasticsearch cluster configuration:
 - file `/etc/elasticsearch/elasticsearch.yml`:

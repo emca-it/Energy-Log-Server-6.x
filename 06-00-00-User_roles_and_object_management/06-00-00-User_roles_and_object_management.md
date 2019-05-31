@@ -132,7 +132,7 @@ object, and Save button to save the selection.
 
 The table below contains built-in user accounts and default passwords:
 
-	|Address		        |User		  |Password	    |Description                                     |Usage          |
+	|Address                |User         |Password     |Description                                     |Usage          |
 	|-----------------------|-------------|-------------|------------------------------------------------|---------------|
 	|https://localhost:5601	|logserver    |logserver    |A built-in *superuser* account                  |               |
 	|                       |alert        |alert        |A built-in account for  the Alert module        |               |  

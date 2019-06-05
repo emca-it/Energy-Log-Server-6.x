@@ -70,6 +70,7 @@ Description of the controls available on the fixed part of screen:
 - Run - a button that allows running the defined AI rule or saving it to the scheduler and run as planned
 
 The rest of the screen will depend on the chosen artificial intelligence algorithm.
+
 ## Screen content for regressive algorithms ##
 
 ![](/media/media/image66_js.png)
@@ -115,6 +116,7 @@ Description of controls:
     "time frame = monthly", we will be able to predict a one month
     ahead from the moment of prediction (according to the "prediction
     cycle" value)
+
 ## Screen content for the Trend algorithm ##
 
 ![](/media/media/image68_js.png)
@@ -164,6 +166,7 @@ Description of controls:
     algorithm what level of exceeding the value of the feature „feature
     to analyze from cheese" is to look for. The parameter currently used
     only by the "Trend" algorithm.
+
 ## Screen content for the neural network (MLP) algorithm ##
 
 ![](/media/media/image69_js.png)
@@ -223,6 +226,7 @@ Column description:
     - **Update** - update of the rule definition
     - **Preview** - preview of the prediction results (the action is
         available after the processing has been completed correctly).
+
 ## AI Learn ##
 
 ![](/media/media/image74.png)
@@ -456,3 +460,134 @@ The role of "Intelligence" launches the appropriate tabs.
 
 An ordinary user only sees his models. The administrator sees all
 models.
+
+## Register new algorithm ##
+
+For register new algorithm:
+
+- **Login** to the Energy Logserver
+- Select **Intelligence**
+- Select **Algorithm**
+- Fill Create algorithm form and press **Submit** button
+
+Form fields:
+
+	| Field   | Description                                                                                                      |
+	|---------|------------------------------------------------------------------------------------------------------------------|
+	| Code    | Short name for algorithm                                                                                         |
+	| Name    | Algorithm name                                                                                                   |
+	| Command | Command to execute. The command must be in the directory pointed to by the parameter elastscheduler.commandpath. |
+
+Energy Logserver execute command:
+
+	<command> <config> <error file> <out file>
+
+Where:
+
+- command	-	Command from command filed of Create algorithm form.
+- config		-	Full path of json config file. The name of file is id of process status document in index .intelligence_rules
+- error file	-	Unique name for error file. Not used by predefined algorithms.
+- out file		-	Unique name for output file. Not used by predefined algorithms.
+
+Config file:
+
+Json document:
+
+	| Field                  | Value                                                                               | Screen field (description)                                           |
+	|------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+	| algorithm_type         | GMA, GMAL, LRS, LRST, RFRS, SMAL, SMA, TL                                           | Algorithm. For customs method field Code from Create algorithm form. |
+	| model_name             | Not empty string.                                                                   | AI Rule Name.                                                        |
+	| search                 | Search id.                                                                          | Choose search.                                                       |
+	| label_field.field      |                                                                                     | Feature to analyse.                                                  |
+	| max_probes             | Integer value                                                                       | Max probes                                                           |
+	| time_frame             | 1 minute, 5 minutes, 15 minutes, 30 minutes, 1 hour, 1 day, 1 week, 30 day, 365 day | Time frame                                                           |
+	| value_type             | min, max, avg, count                                                                | Value type                                                           |
+	| max_predictions        | Integer value                                                                       | Max predictions                                                      |
+	| threshold              | Integer value                                                                       | Threshold                                                            |
+	| automatic_cron         | Cron format string                                                                  | Automatic cycle                                                      |
+	| automatic_enable       | true/false                                                                          | Enable                                                               |
+	| automatic              | true/false                                                                          | Automatic                                                            |
+	| start_date             | YYYY-MM-DD HH:mm or now                                                             | Start date                                                           |
+	| multiply_by_values     | Array of string values                                                              | Multiply by values                                                   |
+	| multiply_by_field      | None or full field name eg.: system.cpu                                             | Multiply by field                                                    |
+	| selectedroles          | Array of roles name                                                                 | Role                                                                 |
+	| last_execute_timestamp |                                                                                     | Last execute                                                         |
+
+	| Not screen fields     |                                     |
+	|-----------------------|-------------------------------------|
+	| preparation_date      | Document preparation date.          |
+	| machine_state_uid     | AI rule machine state uid.          |
+	| path_to_logs          | Path to ai machine logs.            |
+	| path_to_machine_state | Path to ai machine state files.     |
+	| searchSourceJSON      | Query string.                       |
+	| processing_time       | Process operation time.             |
+	| last_execute_mili     | Last executed time in milliseconds. |
+	| pid                   | Process pid if ai rule is running.  |
+	| exit_code             | Last executed process exit code.    |
+
+The command must update the process status document in the system during operation. It is elastic partial document update.
+
+	| Process status         | Field (POST body)          | Description                                    |
+	|------------------------|----------------------------|------------------------------------------------|
+	| START                  | doc.pid                    | System process id                              |
+	|                        | doc.last_execute_timestamp | Current timestamp. yyyy-MM-dd HH:mm            |
+	|                        | doc.last_execute_mili      | Current timestamp in millisecunds.             |
+	| END PROCESS WITH ERROR | doc.error_description      | Error description.                             |
+	|                        | doc.error_message          | Error message.                                 |
+	|                        | doc.exit_code              | System process exit code.                      |
+	|                        | doc.pid                    | Value 0.                                       |
+	|                        | doc.processing_time        | Time of execute process in seconds.            |
+	| END PROCESS OK         | doc.pid                    | Value 0.                                       |
+	|                        | doc.exit_code              | System process exit code. Value 0 for success. |
+	|                        | doc.processing_time        | Time of execute process in seconds.            |
+
+The command must insert data for prediction chart.
+
+	| Field             | Value             | Description                                            |
+	|-------------------|-------------------|--------------------------------------------------------|
+	| model_name        | Not empty string. | AI Rule Name.                                          |
+	| preparationUID    | Not empty string. | Unique prediction id                                   |
+	| machine_state_uid | Not empty string. | AI rule machine state uid.                             |
+	| model_uid         | Not empty string. | Model uid from config file                             |
+	| method_name       | Not empty string. | User friendly algorithm name.                          |
+	| <field>           | Json              | Field calculated. For example: system.cpu.idle.pct_pre |
+
+Document sample:
+
+			{
+			  "_index": "intelligence",
+			  "_type": "doc",
+			  "_id": "emca_TL_20190304_080802_20190531193000",
+			  "_version": 2,
+			  "_score": null,
+			  "_source": {
+			    "machine_state_uid": "emca_TL_20190304_080802",
+			    "overall_efficiency": 0,
+			    "processing_time": 0,
+			    "rmse_normalized": 0,
+			    "predictionUID": "emca_TL_20190304_080802_20190531193000",
+			    "linear_function_b": 0,
+			    "@timestamp": "2019-05-31T19:30:00.000+0200",
+			    "linear_function_a": 0.006787878787878788,
+			    "system": {
+			      "cpu": {
+			        "idle": {
+			          "pct_pre": 0.8213333333333334
+			        }
+			      }
+			    },
+			    "model_name": "emca",
+			    "method_name": "Trend",
+			    "model_uid": "emca_TL_20190304_080802",
+			    "rmse": 0,
+			    "start_date": "2019-03-04T19:30:01.279+0100"
+			  },
+			  "fields": {
+			    "@timestamp": [
+			      "2019-05-31T17:30:00.000Z"
+			    ]
+			  },
+			  "sort": [
+			    1559323800000
+			  ]
+			}

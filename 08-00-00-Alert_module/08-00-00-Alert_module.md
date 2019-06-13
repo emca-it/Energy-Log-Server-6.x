@@ -246,4 +246,44 @@ In addition, you can enter the validity of the rule in the **Rule Importance** f
 
 To add Risk key to the existing Alert rule, go to the **Alert rule list**, tab with the correct rule select the **Update** button. 
 Use the **Read fields** button and in the **Risk key** field, select the appropriate field name.
-In addition, you can enter the validity of the rule in the **Rule Importance** f
+In addition, you can enter the validity of the rule in the **Rule Importance**.
+
+### Adding a new risk calculation algorithm ###
+
+The new algorithm should be added in the `./elastalert_modules/playbook_util.py` file in the `calculate_risk` method. There is a sequence of conditional statements for already defined algorithms:
+
+	#aggregate values by risk_key_aggregation for rule
+	if risk_key_aggregation == "MIN":
+	    value_agg = min(values)
+	elif risk_key_aggregation == "MAX":
+	    value_agg = max(values)
+	elif risk_key_aggregation == "SUM":
+	    value_agg = sum(values)
+	elif risk_key_aggregation == "AVG":
+	    value_agg = sum(values)/len(values)
+	else:
+	    value_agg = max(values)
+
+To add a new algorithm, add a new sequence as shown in the above code:
+
+	elif risk_key_aggregation == "AVG":
+	    value_agg = sum(values)/len(values)
+	elif risk_key_aggregation == "AAA":
+	    value_agg = BBB
+	else:
+	    value_agg = max(values)
+
+where **AAA** is the algorithm code, **BBB** is a risk calculation function.
+
+### Using the new algorithm ###
+
+After adding a new algorithm, it is available in the GUI in the Alert tab.
+
+To use it, add a new rule according to the following steps:
+
+- Select the `custom` value in the `Aggregation` type field;
+- Enter the appropriate value in the `Any` field, e.g. `risk_key_aggregation: AAA`
+
+The following figure shows the places where you can call your own algorithm:
+
+![](/media/media/image123.png)

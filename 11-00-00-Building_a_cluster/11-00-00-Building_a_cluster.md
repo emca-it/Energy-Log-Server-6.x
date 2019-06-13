@@ -94,3 +94,19 @@ Example of the Elasticsearch cluster configuration:
     - check status of the Elasticsearch cluster via log file:
      
 			# tail -f /var/log/elasticsearch/tm-lab.log (cluster.name)
+
+## Addding a new node to existing cluster ##
+
+Install the new Energy instance. The description of the installation can be found in the chapter "First configuration steps"
+
+Change the following parameters in the configuration file:
+
+- `cluster.name:`name_of_the_cluster same for every node;
+- `node.name:`name_of_the_node uniq for every node;
+- `node.master:`true_or_false
+- `node.data:`true_or_false
+- `discovery.zen.ping.unicast.hosts:`["10.0.0.4:9300","10.0.0.5:9300","10.0.0.6:9300"] - IP addresses and instances of nodes in the cluster.
+
+Restart the Elasticsearch instance of the new node:
+	
+	systemctl restart elasticsearch

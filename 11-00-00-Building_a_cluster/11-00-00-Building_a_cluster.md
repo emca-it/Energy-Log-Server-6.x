@@ -95,7 +95,7 @@ Example of the Elasticsearch cluster configuration:
      
 			# tail -f /var/log/elasticsearch/tm-lab.log (cluster.name)
 
-## Addding a new node to existing cluster ##
+## Adding a new node to existing cluster ##
 
 Install the new Energy instance. The description of the installation can be found in the chapter "First configuration steps"
 

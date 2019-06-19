@@ -298,3 +298,40 @@ To use it, add a new rule according to the following steps:
 The following figure shows the places where you can call your own algorithm:
 
 ![](/media/media/image123.png)
+
+### Additional modification of the algorithm (weight) ###
+
+Below is the code in the `calcuate_risk` method where category values are retrieved - here you can add your weight:
+
+            #start loop by tablicy risk_key
+            for k in range(len(risk_keys)):
+                risk_key = risk_keys[k]
+                logging.info(' >>>>>>>>>>>>>> risk_key: ')
+                logging.info(risk_key)
+                key_value = lookup_es_key(match, risk_key)
+                logging.info(' >>>>>>>>>>>>>> key_value: ')
+                logging.info(key_value)
+                value = float(self.get_risk_category_value(risk_key, key_value))
+                values.append( value )
+                logging.info(' >>>>>>>>>>>>>> risk_key values: ')
+                logging.info(values)
+            #finish loop by tablicy risk_key
+            #aggregate values by risk_key_aggregation form rule
+            if risk_key_aggregation == "MIN":
+                value_agg = min(values)
+            elif risk_key_aggregation == "MAX":
+                value_agg = max(values)
+            elif risk_key_aggregation == "SUM":
+                value_agg = sum(values)
+            elif risk_key_aggregation == "AVG":
+                value_agg = sum(values)/len(values)
+            else:
+                value_agg = max(values)
+
+`Risk_key` is the array of selected risk key fields in the GUI.
+A loop is made on this array and a value is collected for the categories in the line:
+
+	value = float(self.get_risk_category_value(risk_key, key_value))
+
+Based on, for example, Risk_key, you can multiply the value of the value field by the appropriate weight.
+The value field value is then added to the table on which the risk calculation algorithms are executed.

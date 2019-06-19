@@ -383,7 +383,7 @@ Kafka allows you to distribute the load between nodes receiving data and encrypt
 
 Architecture example:
 
-![](/media/media/image124.png)
+![](/media/media/image124.PNG)
 
 ### The Kafka installation ###
 

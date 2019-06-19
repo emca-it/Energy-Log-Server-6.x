@@ -188,18 +188,18 @@ copies to clipboard the contest of the given bar.
 
 In discovery tab search for message of  Your interest
 
-![](/media/media/image125.PNG)
+![](/media/media/image125.png)
 
 ----------
 
 Save Your search
 
-![](/media/media/image126.PNG)
+![](/media/media/image126.png)
 
 Check You „Shared link” and copy it
 
-![](/media/media/image127.PNG)
-![](/media/media/image128.PNG)
+![](/media/media/image127.png)
+![](/media/media/image128.png)
 
 **! ATTENTION !** Do not copy „?_g=()” at the end.
 
@@ -207,7 +207,7 @@ Check You „Shared link” and copy it
 
 Select Alerting module
 
-![](/media/media/image129.PNG)
+![](/media/media/image129.png)
 
 ----------
 
@@ -236,13 +236,13 @@ Once Alert is created use `ANY` frame to add the following directives:
 
 ----------
 Sample:
-![](/media/media/image130.PNG)
+![](/media/media/image130.png)
 
 
 ----------
 Search for triggered alert in Discovery tab. Use alert* search pattern.
 
-![](/media/media/image131.PNG)
+![](/media/media/image131.png)
 
 Refresh the alert that should contain url for the dashboard.
 Once available, kibana_dashboard field can be exposed to dashboards giving You a real drill down feature.

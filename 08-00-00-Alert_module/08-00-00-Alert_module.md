@@ -248,6 +248,17 @@ To add Risk key to the existing Alert rule, go to the **Alert rule list**, tab w
 Use the **Read fields** button and in the **Risk key** field, select the appropriate field name.
 In addition, you can enter the validity of the rule in the **Rule Importance**.
 
+### Risk calculation algorithms ###
+
+The risk calculation mechanism performs the aggregation of the risk field values.
+We have the following algorithms for calculating the alert risk (Aggregation type):
+
+- min - returns the minimum value of the risk values from selected fields;
+- max - returns the maximum value of the risk values from selected fields;
+- avg - returns the average of risk values from selected fields;
+- sum - returns the sum of risk values from selected fields;
+- custom - returns the risk value based on your own algorithm
+
 ### Adding a new risk calculation algorithm ###
 
 The new algorithm should be added in the `./elastalert_modules/playbook_util.py` file in the `calculate_risk` method. There is a sequence of conditional statements for already defined algorithms:

@@ -107,6 +107,8 @@ Change the following parameters in the configuration file:
 - `node.data:`true_or_false
 - `discovery.zen.ping.unicast.hosts:`["10.0.0.4:9300","10.0.0.5:9300","10.0.0.6:9300"] - IP addresses and instances of nodes in the cluster.
 
+If you add a node with the role `data`, delete the contents of the `path.data` directory, by default in `/var/lib/elasticsearch`
+
 Restart the Elasticsearch instance of the new node:
 	
 	systemctl restart elasticsearch

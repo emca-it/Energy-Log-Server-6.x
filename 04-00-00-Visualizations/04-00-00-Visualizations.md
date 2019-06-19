@@ -183,3 +183,66 @@ the first is to shorten the length of the link, and second on
 copies to clipboard the contest of the given bar.
 
 ![](/media/media/image37.png)
+
+## Dashboard drilldown ##
+
+In discovery tab search for message of  Your interest
+
+![](/media/media/image125.PNG)
+
+----------
+
+Save Your search
+
+![](/media/media/image126.PNG)
+
+Check You „Shared link” and copy it
+
+![](/media/media/image127.PNG)
+![](/media/media/image128.PNG)
+
+**! ATTENTION !** Do not copy „?_g=()” at the end.
+
+----------
+
+Select Alerting module
+
+![](/media/media/image129.PNG)
+
+----------
+
+Once Alert is created use `ANY` frame to add the following directives:
+
+	Use_kibana4_dashboard: paste Your „shared link” here
+
+`use_kibana_dashboard:` - The name of a Kibana dashboard to link to. Instead of generating a dashboard from a template, Alert can use an existing dashboard. It will set the time range on the dashboard to around the match time, upload it as a temporary dashboard, add a filter to the query_key of the alert if applicable, and put the url to the dashboard in the alert. (Optional, string, no default).
+
+----------
+
+	Kibana4_start_timedelta
+
+`kibana4_start_timedelta:` Defaults to 10 minutes. This option allows you to specify the start time for the generated kibana4 dashboard. This value is added in front of the event. For example,
+
+	`kibana4_start_timedelta: minutes: 2`
+
+----------
+
+
+	Kibana4_end_timedelta`
+
+`kibana4_end_timedelta:` Defaults to 10 minutes. This option allows you to specify the end time for the generated kibana4 dashboard. This value is added in back of the event. For example,
+
+	kibana4_end_timedelta: minutes: 2
+
+----------
+Sample:
+![](/media/media/image130.PNG)
+
+
+----------
+Search for triggered alert in Discovery tab. Use alert* search pattern.
+
+![](/media/media/image131.PNG)
+
+Refresh the alert that should contain url for the dashboard.
+Once available, kibana_dashboard field can be exposed to dashboards giving You a real drill down feature.

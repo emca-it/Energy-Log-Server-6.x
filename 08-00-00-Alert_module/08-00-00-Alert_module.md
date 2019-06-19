@@ -14,6 +14,7 @@ the „status:500" query for a specific index every 5 minutes. If the
 condition we are interested in is met, we send an action in the form
 of sending a message to our e-mail address. In the action, you can
 also set the launch of any script.
+
 ## Enabling the Alert Module ##
 
 To enabling the alert module you should:
@@ -178,6 +179,12 @@ You can add a Playbook to the Alert while creating a new Alert or by editing a p
 To add Palybook to the new Alert rule, go to the **Create alert rule** tab and in the **Playbooks** section use the arrow keys to move the correct Playbook to the right window.
 
 To add a Palybook to existing Alert rule, go to the **Alert rule list** tab with the correct rule select the **Update** button and in the **Playbooks** section use the arrow keys to move the correct Playbook to the right window.
+
+### Playbook verification ###
+
+When creating an alert or while editing an existing alert, it is possible that the system will indicate the most-suited playbook for the alert. For this purpose, the Validate button is used, which starts the process of searching the existing playbook and selects the most appropriate ones.
+
+![](/media/media/image132.png)
 
 ## Risks ##
 

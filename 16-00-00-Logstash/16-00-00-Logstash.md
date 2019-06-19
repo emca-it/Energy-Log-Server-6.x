@@ -376,3 +376,98 @@ This Logstash plugin has example of complete configuration for integration with 
         }
       }
     }
+
+## Enabling encryption ##
+
+Kafka allows you to distribute the load between nodes receiving data and encrypts communication.
+
+Architecture example:
+
+![](/media/media/image124.png)
+
+### The Kafka installation ###
+
+Documentation during creation.
+
+### Enabling encryption in Kafka ###
+
+Generate SSL key and certificate for each Kafka broker
+
+	keytool -keystore server.keystore.jks -alias localhost -validity {validity} -genkey -keyalg RSA
+
+
+Configuring Host Name In Certificates
+
+	keytool -keystore server.keystore.jks -alias localhost -validity {validity} -genkey -keyalg RSA -ext SAN=DNS:{FQDN}
+
+Verify content of the generated certificate:
+	
+	keytool -list -v -keystore server.keystore.jks
+
+Creating your own CA
+
+	openssl req -new -x509 -keyout ca-key -out ca-cert -days 365
+	keytool -keystore client.truststore.jks -alias CARoot -import -file ca-cert
+	keytool -keystore server.truststore.jks -alias CARoot -import -file ca-cert
+
+Signing the certificate
+
+	
+	keytool -keystore server.keystore.jks -alias localhost -certreq -file cert-file
+	openssl x509 -req -CA ca-cert -CAkey ca-key -in cert-file -out cert-signed -days {validity} -CAcreateserial -passin pass:{ca-password}
+
+Import both the certificate of the CA and the signed certificate into the keystore
+
+	keytool -keystore server.keystore.jks -alias CARoot -import -file ca-cert
+	keytool -keystore server.keystore.jks -alias localhost -import -file cert-signed
+		
+### Configuring Kafka Brokers ###
+
+In `/etc/kafka/server.properties` file set the following options:
+
+	listeners=PLAINTEXT://host.name:port,SSL://host.name:port
+
+	ssl.keystore.location=/var/private/ssl/server.keystore.jks
+	ssl.keystore.password=test1234
+	ssl.key.password=test1234
+	ssl.truststore.location=/var/private/ssl/server.truststore.jks
+	ssl.truststore.password=test1234
+
+and restart the Kafka service
+
+	systemctl restart kafka
+
+### Configuring Kafka Clients ###
+
+Logstash
+
+Configure the output section in Logstash based on the following example:
+
+	output {
+	  kafka {
+	    bootstrap_servers => "host.name:port"
+	    security_protocol => "SSL"
+	    ssl_truststore_type => "JKS"
+	    ssl_truststore_location => "/var/private/ssl/client.truststore.jks"
+	    ssl_truststore_password => "test1234"
+	    client_id => "host.name"
+	    topic_id => "Topic-1"
+	    codec => json
+	  }
+	}
+
+Configure the input section in Logstash based on the following example:
+
+	input {
+	  kafka {
+	    bootstrap_servers => "host.name:port"
+	    security_protocol => "SSL"
+	    ssl_truststore_type => "JKS"
+	    ssl_truststore_location => "/var/private/ssl/client.truststore.jks"
+	    ssl_truststore_password => "test1234"
+	    consumer_threads => 4
+	    topics => [ "Topic-1" ]
+	    codec => json
+	    tags => ["kafka"]
+	   }
+	}

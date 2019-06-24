@@ -86,6 +86,11 @@ Description of controls:
     field", then unique values of this trait will appear in this field.
     Multiplications will be made for the selected values. If at least
     one of value is not selected, the „Run" buttons will be inactive.\`
+
+In other words, multiplication means performing an analysis for many values from the indicated field, for example: `sourece_node_host`- which we indicate in `Multiply by field (from search)`.
+
+However, in `Multiply by values (from search)` we already indicate values of this field for which the analysis will be performed, for example: host1, host2, host3, ....
+
 - **time frame** - feature aggregation method (1 minute, 5 minute, 15
     minute, 30 minute, hourly, weekly, monthly, 6 months, 12 months)
 - **max probes** - how many samples back will be taken into account for
@@ -132,6 +137,11 @@ Description of controls:
     field", then unique values of this trait will appear in this field.
     Multiplications will be made for the selected values. If at least
     one of value is not selected, the „Run" buttons will be inactive.\`
+
+In other words, multiplication means performing an analysis for many values from the indicated field, for example: `sourece_node_host`- which we indicate in `Multiply by field (from search)`.
+
+However, in `Multiply by values (from search)` we already indicate values of this field for which the analysis will be performed, for example: host1, host2, host3, ....
+
 - **time frame** - feature aggregation method (1 minute, 5 minute, 15
     minute, 30 minute, hourly, weekly, monthly, 6 months, 12 months)
 - **max probes** - how many samples back will be taken into account for

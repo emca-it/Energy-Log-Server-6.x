@@ -10,10 +10,6 @@ parameters include:
 - using the power of processors
 - detection of known incorrect behaviour of IT systems
 
-In the future, it is planned to launch algorithms that enable
-automatic detection of anomalies, e.g. non-standard network traffic,
-which may suggest hacking attempts.
-
 (A detailed description of the implemented algorithms can be found in
 a separate document)
 

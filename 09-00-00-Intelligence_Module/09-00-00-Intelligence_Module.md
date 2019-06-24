@@ -10,9 +10,6 @@ parameters include:
 - using the power of processors
 - detection of known incorrect behaviour of IT systems
 
-(A detailed description of the implemented algorithms can be found in
-a separate document)
-
 To access of the Intelligence module, click the tile icon
 from the main meu bar and then go to the „Intelligence" icon (To go
 back, click to the „Search" icon).

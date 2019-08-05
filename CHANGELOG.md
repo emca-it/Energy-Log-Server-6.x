@@ -1,4 +1,64 @@
 # **CHANGELOG** #
+
+## Version 6.1.6
+###Added
++ **BREAKING CHANGE**: in order to upgrade alert* indices have to be reindexed. #TODO: instructions for this
++ Alert upgraded
++ System indices created automaticly durring install
++ Improved settings for system indices (priority, shard count, automatic replicas)
++ Validate playbooks button when updating alert rule
++ Order of plugins is no longer random
++ Reports plugin now takes roles into consideration when creating and browsing generated reports
++ Object permission lists are now sorted
++ Improved CSV export field list (sorting and bigger size)
++ DevTools enabled/disabled directive added to default kibana.yml
++ Timelion enabled/disabled directive added to default kibana.yml
+
+
+### CHANGED
+- bugfix: CVE-2019-7608
+- bugfix: CVE-2019-7609
+- bugfix: CVE-2018-3830
+- bugfix: filtering logo extension during upload and report generation
+- bugfix: improved verification for user creation
+- bugfix: report scheduling for AD users
+- bugfix: downloading jpeg exports now returns correct response header
+- bugfix: could not set risk category to zero
+- bugfix: IE11 compability fix when creating new alert
+- bugfix: Admin users see all alerts
+- bugfix: Error message if you try create new alert but it already exists
+
+
+## Version 6.1.5 
+
+- **BREAKING CHANGE**: audit index is from now on created with type "doc" and date field "@timestamp". Old index is not compatible and should be deleted before update:
+- Turn of audit logging. In Kibana -> Settings and unmark all in "Update Audit Setting" section.
+    - Delete the audit index
+    - Update elasticsearch-auth
+    - Turn on audit logging.
++ Risk Management for Alerts - User can create custo categories for field attributes like Hostname, Hostip, Username. Once the alert is triggred, the result get score amplification calculated from object categories.
++ Alert rule importance - introduction of new value for each alerts that is correlated with objedct category and helps identify 
++ When creating alerts now we have the ability Test the rule before scheduling this
++ Playbook introduction - ability to create simple editible instructions(+scripts) that system oerator should follow when Alert is triggered
++ Verify IP on blacklists - if the Alerrt is triggred for IP, Verify button let us check its reputaion
++ When creating alerts operatos get ability to validate the alert and find most suitable playbook for it. Playbook list is automaticly sorted.
++ User get email notification when Incident is attached to them. New email field in user tab.
++ IP's are correlated towards Bad IP reputation list
++ Introduction of Incidents. Alerts are now turned into Incidents, with assigned operator and its status
++ Regular user can configure own Alerts
++ Netflow, jflow, sflow support
++ Provided interface for running custom, external, AI jobs created in own programming language
+
+- Audit index is from now created with type "doc" and date field "@timestamp"
+- Better Radius authentication supoort
+- System auditing corrections
+
+### CHANGED
+
+- bugfix: in intelligence module api
+- bugfix: fixes in sorting alerts
+
+
 ## Version 6.1.3 ##
 ### Added ###
 - Securing all the endpoints of elasticsearch APIs

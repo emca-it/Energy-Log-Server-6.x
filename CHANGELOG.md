@@ -1,9 +1,9 @@
 # **CHANGELOG** #
 
 ## Version 6.1.6
-###Added
-+ **BREAKING CHANGE**: in order to upgrade alert* indices have to be reindexed. #TODO: instructions for this
-+ Alert upgraded
+### Added
++ **BREAKING CHANGE**: Support of simple upgrade procedure *alert* indices have to be reindexed
++ Alerting module upgraded
 + System indices created automaticly durring install
 + Improved settings for system indices (priority, shard count, automatic replicas)
 + Validate playbooks button when updating alert rule
@@ -20,7 +20,7 @@
 - bugfix: CVE-2019-7609
 - bugfix: CVE-2018-3830
 - bugfix: filtering logo extension during upload and report generation
-- bugfix: improved verification for user creation
+- bugfix: improved verification for Create User
 - bugfix: report scheduling for AD users
 - bugfix: downloading jpeg exports now returns correct response header
 - bugfix: could not set risk category to zero

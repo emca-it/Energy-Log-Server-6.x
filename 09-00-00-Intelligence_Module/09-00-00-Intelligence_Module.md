@@ -1,7 +1,7 @@
 # Intelligence Module #
 
 A dedicated artificial intelligence module has been built in the 
-Energy Log Server system that allows prediction of parameter values
+Energy Logserver system that allows prediction of parameter values
 relevant to the maintenance of infrastructure and IT systems. Such
 parameters include:
 
@@ -42,7 +42,7 @@ Description of the controls available on the fixed part of screen:
 
 - **Algorithm** - the name of the algorithm that forms the basis of the
 artificial intelligence rule
-- **Choose search** - search defined in the Energy Log Server system,
+- **Choose search** - search defined in the Energy Logserver system,
 which is used to select a set of data on which the artificial
 intelligence rule will operate
 - **Run** - a button that allows running the defined AI rule or saving it
@@ -59,7 +59,7 @@ Description of the controls available on the fixed part of screen:
 
 - Algorithm - the name of the algorithm that forms the basis of the artificial intelligence rule
 
-- Choose search - search defined in the Energy Log Server system, which is used to select a set of data on which the artificial intelligence rule will operate
+- Choose search - search defined in the Energy Logserver system, which is used to select a set of data on which the artificial intelligence rule will operate
 
 - Run - a button that allows running the defined AI rule or saving it to the scheduler and run as planned
 
@@ -176,7 +176,7 @@ However, in `Multiply by values (from search)` we already indicate values of thi
 Descriptions of controls:
 
 - **Name** - name of the learned neural network
-- **Choose search** - search defined in Energy Log Server, which is used
+- **Choose search** - search defined in Energy Logserver, which is used
     to select a set of data on which the rule of artificial intelligence
     will work
 - **Below**, on the left, a list of attributes and their weights based on
@@ -412,7 +412,7 @@ should be created from this index. The index should be available to
 users of the Intelligence module.
 ## Scheduler Module ##
 
-Energy Log Server has a built-in task schedule. In this module, we can
+Energy Logserver has a built-in task schedule. In this module, we can
 define a command or a list of commands whose execution we instruct the
 application in the form of tasks. We can determine the time and
 frequency of tasks. Tasks can contain a simple syntax, but they can
@@ -466,7 +466,7 @@ models.
 
 For register new algorithm:
 
-- **Login** to the Energy Log Server
+- **Login** to the Energy Logserver
 - Select **Intelligence**
 - Select **Algorithm**
 - Fill Create algorithm form and press **Submit** button
@@ -479,7 +479,7 @@ Form fields:
 	| Name    | Algorithm name                                                                                                   |
 	| Command | Command to execute. The command must be in the directory pointed to by the parameter elastscheduler.commandpath. |
 
-Energy Log Server execute command:
+Energy Logserver execute command:
 
 	<command> <config> <error file> <out file>
 

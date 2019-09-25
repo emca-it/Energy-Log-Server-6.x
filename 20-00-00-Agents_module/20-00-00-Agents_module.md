@@ -95,6 +95,10 @@ It is recommended to run the Agent as a service in a given operating system.
 
 	- The sample of `agents.exe` and `agents.xml` files are in the *agents_bin/wrapper* directory;
 
+	- To install the service, start the PowerShell console as an administrator and execute the following commands:
+
+			New-Service -name masteragent -displayName masteragent -binaryPathName "C:\Program Files\MasterAgent\agents.exe"
+
 	- As a working directory, set the directory where the agent configuration file is located.
 
 

@@ -1,11 +1,11 @@
 # Integration with AD #
 
 
-You can configure the Energy Logserver to communicate with Active Directory to authenticate users. 
+You can configure the Energy Log Server to communicate with Active Directory to authenticate users. 
 To integrate with Active Directory, you configure an Active Directory realm and assign Active Directory 
-users and groups to the Energy Logserver roles in the role mapping file.
+users and groups to the Energy Log Server roles in the role mapping file.
 
-To protect passwords, communications between the Energy Logserver and the LDAP server should be encrypted 
+To protect passwords, communications between the Energy Log Server and the LDAP server should be encrypted 
 using SSL/TLS. Clients and nodes that connect via SSL/TLS to the LDAP server need to have the LDAP 
 server’s certificate or the server’s root CA certificate installed in their keystore or truststore.
 ## AD configuration ##
@@ -84,7 +84,6 @@ like. (It is important to take the interpreter to read these values
               service_principal_name: "esauth@example2.com" # optional, for sso
               service_principal_name_password : "password" # optional, for ssl
 
-
 After completing the LDAP section entry in the `properties.yml` file,
 save the changes and restart the service with the command:
 
@@ -160,17 +159,17 @@ bank:
 
 
 How to the mapping mechanism works ?
-An AD user log in to Energy Logserver. In the application there is a
+An AD user log in to Energy Log Server. In the application there is a
 admin role, which through the file role-mapping .yml binds to the name
 of the admin role to which the Admins container from AD is assigned.
 It is enough for the user from the AD account to log in to the
 application with the privileges that are assigned to admin role in 
-the Energy Logserver. At the same time, if it is the first login in 
-the Energy Logserver, an account is created with an entry that informs the
+the Energy Log Server. At the same time, if it is the first login in 
+the Energy Log Server, an account is created with an entry that informs the
 application administrator that is was created by logging in with AD.
 
 Similar, the mechanism will work if we have a role with an arbitrary
-name created in Energy Logserver Logistics and connected to the name of the
+name created in Energy Log Server Logistics and connected to the name of the
 role-mappings.yml and existing in AD any container.
 
 Below a screenshot of the console on which are marked accounts that
@@ -180,7 +179,7 @@ were created by uesrs logging in from AD
 
 If you map roles with from several domains, for example
 dev.examloe1.com, dev.example2.com then in User List we will see which
-user from which domain with which role logged in Energy Logserver.
+user from which domain with which role logged in Energy Log Server.
 
 ## Password encryption ##
 
@@ -200,17 +199,19 @@ To do this use *pass-encrypter.sh* script that is located in the *Utils* directo
 
 # Integration with Radius #
 
-To use the Radius protocol, install the latest available version of Energy Logserver.
+To use the Radius protocol, install the latest available version of Energy Log Server.
 
 ## Configuration ##
 
-The default configuration file is located at `/etc/elasticsearch/properties.yml`:
+The default configuration file is located at /etc/elasticsearch/properties.yml:
 
 		# Radius opts
-		#radius.host: "RADIUS_SERVER_IP"
-		#radius.secret: "secret_password"
-		#radius.port: 1812 # default radius port
+		#radius.host: "10.4.3.184"
+		#radius.secret: "querty1q2ww2q1"
+		#radius.port: 1812
 
 Use appropriate secret based on config file in Radius server. The secret is configured on `clients.conf` in Radius server. 
 
-On radius server site, the client has to be set with Energy client host IP.
+In this case, since the plugin will try to do Radius auth then client IP address should be the IP address where the Elasticsearch is deployed.
+
+Every user by default at present get the admin role.

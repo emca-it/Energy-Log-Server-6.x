@@ -1,7 +1,7 @@
 
 # The Agents module. #
 
-The Agents module is used for the central management of agents used in Energy Logserver such as Filebeat, Winlogbeat, Packetbeat, Metricbeat.# Agent installation #
+The Agents module is used for the central management of agents used in Energy Log Server such as Filebeat, Winlogbeat, Packetbeat, Metricbeat.# Agent installation #
 All necessary components can be found in the installation folder *${installation_folder}/utils/agents\_bin*.
 
 ## Component modules ##
@@ -41,35 +41,17 @@ It is recommended to run the Agent as a service in a given operating system.
 
 	The Logshash, Agent and Masteragent use the same certificate file. To generate a file, use the command:
 
-			keytool -genkey -alias aka -keypass simulator -keystore lig.keystore -storepass simulator
-
-1. Logstash configuration
-
-	- input
-
-			input {
-			  http {
-			    ssl => true
-			    keystore => "/opt/lig.keystore"
-			    keystore_password => "simulator"
-			    tags => ["agents"]
-			  }
-			}
-
-	- output
-
-			output {
-			  if "agents" in [tags] {
-			elasticsearch {
-			    hosts => "localhost:9200"
-			    manage_template => false
-			    index => ".agents" 
-			    document_type => "doc" 
-			  }
-			  }
-			}
+			keytool -genkey -alias aka -keypass simulator -keystore lig.keystore -storepass simulator -keyalg RSA
 
 1. Linux host configuration
+
+	-	To install the MasterAgent on Linux RH / Centos, the net-tools package must be installed:
+				
+			yum install net-tools
+
+	-	Add an exception to the firewall to listen on TCP 8081:
+
+			firewall-cmd --permanent --zone public --add-port 8081/tcp
 
 	- 	Download `MasterBeatAgent.jar` and `agent.conf` files to any desired location;
 
@@ -80,6 +62,30 @@ It is recommended to run the Agent as a service in a given operating system.
 	- 	The agent should always be run with an indication of the working directory in which the `agent.conf` file is located;
 
 	- 	The Agent is started by the `java -jar MasterBeatAgent.jar` command.
+	- 	Configuration of the `/etc/systemd/system/masteragent.service` file:
+
+			[Unit]
+			Description=Manage MasterAgent service
+			Wants=network-online.target
+			After=network-online.target
+			
+			[Service]
+			WorkingDirectory=/opt/agent
+			ExecStart=/bin/java -jar MasterBeatAgent.jar
+			User=root
+			Type=simple
+			Restart=on-failure
+			RestartSec=10
+			
+			[Install]
+			WantedBy=multi-user.target
+
+	-	After creating the file, run the following commands:
+
+			systemctl daemon-reload
+			systemctl enable  masteragent
+			systemctl start masteragent
+
 
 1. Windows host configuration
 

@@ -2,9 +2,9 @@
 
 
 Visualize enables you to create visualizations of the data
-in your Energy Logserver indices. You can then build dashboards
+in your Energy Log Server indices. You can then build dashboards
 that display related visualizations. Visualizations are based
-on Energy Logserver queries. By using a series of Energy Logserver
+on Energy Log Server queries. By using a series of Energy Log Server
 aggregations to extract and process your data, you can create
 charts that show you the trends, spikes, and dips.
 
@@ -170,9 +170,9 @@ use ![](/media/media/image17_1_js.png) button.# Sharing dashboards #
 
 ## Sharing dashboards ##
 
-The dashboard can be share with other Energy Logserver users as well
+The dashboard can be share with other Energy Log Server users as well
 as on any page - by placing a snippet of code. Provided that it cans
-retrieve information from Energy Logserver.
+retrieve information from Energy Log Server.
 
 To do this, create new dashboard or open the saved dashboard and click 
 on the "Share" to the top of the page. A window

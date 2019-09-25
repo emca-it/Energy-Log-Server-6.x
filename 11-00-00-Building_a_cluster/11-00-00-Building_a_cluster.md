@@ -55,9 +55,7 @@ in the following configuration files on every node that will be connected to the
     - `network.host:["_local_","_site_"]`
     - `discovery.zen.ping.multicast.enabled`
     - `discovery.zen.ping.unicast.hosts`
-    - `index.number_of_shards`
-    - `index.number_of_replicas`
-- `/etc/elsticsearch/logging.yml`:
+- `/etc/elsticsearch/log4j2.properties`:
   - `logger: action: DEBUG` - for easier debugging.
 
 ## Example setup ##
@@ -73,8 +71,7 @@ Example of the Elasticsearch cluster configuration:
 		http.port: 9200
 		discovery.zen.ping.multicast.enabled: false
 		discovery.zen.ping.unicast.hosts: ["10.0.0.4:9300","10.0.0.5:9300","10.0.0.6:9300"]
-		index.number_of_shards: 3
-		index.number_of_replicas: 1
+
 
 - to start the Elasticsearch cluster execute command:
 
@@ -94,6 +91,7 @@ Example of the Elasticsearch cluster configuration:
     - check status of the Elasticsearch cluster via log file:
      
 			# tail -f /var/log/elasticsearch/tm-lab.log (cluster.name)
+
 
 ## Adding a new node to existing cluster ##
 

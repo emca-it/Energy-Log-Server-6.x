@@ -270,11 +270,11 @@ This output plugin sends all data to the local Elasticsearch instance and create
 
 		   index => "%{type}-%{+YYYY.MM.dd}"
 
-		   user => "logserver"
-		   password => "logserver"
+		   user => "logstash"
+		   password => "logstash"
 		}
 	}
-## Logstash pluging for "naemon beat" ##
+## Logstash plugin for "naemon beat" ##
 
 This Logstash plugin has example of complete configuration for integration with *naemon* application:
 
@@ -325,7 +325,7 @@ This Logstash plugin has example of complete configuration for integration with 
             }
         }
     }
-## Logstash pluging for "perflog" ##
+## Logstash plugin for "perflog" ##
 
 This Logstash plugin has example of complete configuration for integration with perflog:
 

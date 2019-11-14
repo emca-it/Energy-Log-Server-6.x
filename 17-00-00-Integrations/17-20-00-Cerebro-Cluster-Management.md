@@ -45,7 +45,8 @@ Restart=always
 WorkingDirectory=/opt/cerebro
 
 [Install]
-WantedBy=multi-user.target```
+WantedBy=multi-user.target
+```
 
 ```bash
 cp cerebro.service /usr/lib/systemd/system/

@@ -112,13 +112,13 @@ https = {
 #}
 ```
 
-5. Start the service
+6. Start the service
 ```bash
 systemctl start cerebro
 goto: https://127.0.0.1:5602
 ```
 
-##Optional:
+## Optional:
 1. Register backup/snapshot repository for elasticsearch
 ```bash
 curl -k -XPUT "https://127.0.0.1:9200/_snapshot/backup?pretty" -H 'Content-Type: application/json' -d'

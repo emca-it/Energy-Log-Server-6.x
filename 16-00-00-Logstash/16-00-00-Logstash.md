@@ -7,10 +7,13 @@ choose. A Logstash pipeline has two required elements, *input* and *output*,
 and one optional element *filter*. The input plugins consume data from a source, the filter plugins modify the data as you specify, and the output plugins write the data to a destination.
 The default location of the Logstash plugin files is: */etc/logstash/conf.d/*. This location contain following Energy Logserver 
 
-Log Analytics default plugins:
+Energy Logserver default plugins:
 
 - `01-input-beats.conf`
 - `01-input-syslog.conf`
+- `01-input-snmp.conf`
+- `01-input-http.conf`
+- `01-input-file.conf`
 - `020-filter-beats-syslog.conf`
 - `020-filter-network.conf`
 - `099-filter-geoip.conf`
@@ -27,8 +30,59 @@ This plugin wait for receiving data from remote beats services. It use tcp
                                 port => 5044
                         }
                 }
-## Logstash - Input "network" ##
 
+### Getting data from share folder
+
+Using beats, you can download files from FTP, SFTP, SMB share.
+Connection to remote resources should be done as follows:
+
+#### Connecting to FTP server
+
+- Installation
+
+		yum install curlftpfs
+
+- Create mount ftp directory
+
+		mkdir /mnt/my_ftp
+
+- Use `curlftpfs` to mount your remote ftp site. Suppose my access credentials are as follows:
+
+		urlftpfs ftp-user:ftp-pass@my-ftp-location.local /mnt/my_ftp/
+
+#### Connecting to SFTP server
+
+- Install the required packages
+
+		yum install sshfs
+
+- Add user
+
+		sudo adduser yourusername fuse
+
+- Create local folder
+
+		mkdir ~/Desktop/sftp
+
+- Mount remote folder to local:
+
+		sshfs HOSTuser@remote.host.or.ip:/host/dir/to/mount ~/Desktop/sftp
+
+#### Connecting to SMB/CIFS server
+
+- Create local folder
+
+		mkdir ~/Desktop/smb
+
+- Mount remote folder to local:
+
+		mount -t smbfs //remoate.host.or.ip/freigabe /mnt -o username=testuser
+
+	or
+		mount -t cifs //remoate.host.or.ip/freigabe /mnt -o username=testuser
+
+
+## Logstash - Input "network" ##
 
 This plugin read events over a TCP or UDP socket assigns the appropriate tags:
 
@@ -47,6 +101,53 @@ This plugin read events over a TCP or UDP socket assigns the appropriate tags:
 		                tags => [ "LAN", "UDP" ]
 		        }
 		}
+
+## Logstash - Input SNMP
+
+The SNMP input polls network devices using Simple Network Management Protocol (SNMP) to gather information related to the current state of the devices operation:
+
+		input {
+		  snmp {
+		    get => ["1.3.6.1.2.1.1.1.0"]
+		    hosts => [{host => "udp:127.0.0.1/161" community => "public" version => "2c"  retries => 2  timeout => 1000}]
+		  }
+		}
+
+
+## Logstash - Input HTTP / HTTPS
+
+Using this input you can receive single or multiline events over http(s). Applications can send an HTTP request to the endpoint started by this input and Logstash will convert it into an event for subsequent processing. Sample definition:
+
+		input {
+		 http {
+		    host => "0.0.0.0"
+		    port => "8080"
+		  }
+		}
+
+Events are by default sent in plain text. You can enable encryption by setting ssl to true and configuring the ssl_certificate and ssl_key options:
+
+
+		input {
+		 http {
+		    host => "0.0.0.0"
+		    port => "8080"
+		    ssl => "true"
+		    ssl_certificate => "path_to_certificate_file"
+		    ssl_key => "path_to_key_file"
+		  }
+		}
+
+## Logstash - Input File
+
+This plugin stream events from files, normally by tailing them in a manner similar to tail -0F but optionally reading them from the beginning. Sample definition:
+
+		file {
+		    path => "/tmp/access_log"
+		    start_position => "beginning"
+		  }
+
+
 ## Logstash - Filter "beats syslog" ##
 
 

@@ -367,20 +367,21 @@ https://documentation.wazuh.com/current/installation-guide/installing-wazuh-agen
 #### Filebeat configuration ####
 
 ## BRO integration ##
+
 ## 2FA authorization with Google Auth Provider (example)
 
 ### Software used (tested versions):
 - NGiNX (1.16.1 - from CentOS base reposiory)
-- oauth2_proxy (https://github.com/pusher/oauth2_proxy/releases - 4.0.0)
+- oauth2_proxy ([https://github.com/pusher/oauth2_proxy/releases](https://github.com/pusher/oauth2_proxy/releases) - 4.0.0)
 
 ### The NGiNX configuration:
-1. Copy the ng_oauth2_proxy.conf to `/etc/nginx/conf.d/`;
+1. Copy the [ng_oauth2_proxy.conf](/files/ng_oauth2_proxy.conf) to `/etc/nginx/conf.d/`;
 1. Set `ssl_certificate` and `ssl_certificate_key` path in ng_oauth2_proxy.conf
 
 When SSL is set using nginx proxy, Kibana can be started with http. 
 However, if it is to be run with encryption, you also need to change `proxy_pass` to the appropriate one.
 
-### The `oauth2_proxy` configuration:
+### The [oauth2_proxy](/files/oauth2_proxy.cfg) configuration:
 
 1. Create a directory in which the program will be located and its configuration:
 
@@ -413,20 +414,18 @@ cookie_domain = "kibana-host.org"
 	- Get configuration to JSON file and copy Client ID;
 	- On the dashboard of the Google Cloud select "APIs & Auth" -> "APIs";
 	- Click on "Admin SDK" and "Enable API";
-	- Follow the instruction at https://developers.google.com/admin-sdk/directory/v1/guides/delegation#delegate_domain-wide_authority_to_your_service_account and give the service account the following permissions:
+	- Follow the instruction at [https://developers.google.com/admin-sdk/directory/v1/guides/delegation#delegate_domain-wide_authority_to_your_service_account](https://developers.google.com/admin-sdk/directory/v1/guides/delegation#delegate_domain-wide_authority_to_your_service_account) and give the service account the following permissions:
 
 			https://www.googleapis.com/auth/admin.directory.group.readonly
 			https://www.googleapis.com/auth/admin.directory.user.readonly
 
-	- Follow the instructions to grant access to the Admin API https://support.google.com/a/answer/60757
+	- Follow the instructions to grant access to the Admin API [https://support.google.com/a/answer/60757](https://support.google.com/a/answer/60757)
 	- Create or select an existing administrative email in the Gmail domain to flag it `google-admin-email`
 	- Create or select an existing group to flag it `google-group`
 	- Copy the previously downloaded JSON file to `/etc/oauth2_proxy/`.
-	- In file `oauth2_proxy.cfg` wpisać odpowiednią ścieżkę w:
-
+	- In file [oauth2_proxy](/files/oauth2_proxy.cfg) set the appropriate path:
 
 			google_service_account_json =
-
 
 ### Service start up
 
@@ -481,7 +480,7 @@ In the browser enter the address pointing to the server with the Logserver insta
 	bash
 	chown -R cerebro:cerebro /opt/cerebro && chmod -R 700 /opt/cerebro
 
-1. Install cerbero service
+1. Install Cerbero service ([cerebro.service](/files/cerebro.service)):
 
 		[Unit]
 		Description=Cerebro
@@ -504,7 +503,7 @@ In the browser enter the address pointing to the server with the Logserver insta
 		systemctl enable cerebro
 
 
-1. Customize configuration file: /opt/cerebro/conf/application.conf
+1. Customize configuration file: [/opt/cerebro/conf/application.conf](/files/application.conf)
 
 	- Authentication
 
@@ -588,6 +587,6 @@ In the browser enter the address pointing to the server with the Logserver insta
 1. Login using curl/kibana
 
 		bash
-		curl -k -XPOST 'https://192.168.3.11:5602/auth/login' -H 'mimeType: application/x-www-form-urlencoded' -d 'user=logserver&password=logserver' -c cookie.txt
-		curl -k -XGET 'https://192.168.3.11:5602' -b cookie.txt
+		curl -k -XPOST 'https://127.0.0.1:5602/auth/login' -H 'mimeType: application/x-www-form-urlencoded' -d 'user=logserver&password=logserver' -c cookie.txt
+		curl -k -XGET 'https://127.0.0.1:5602' -b cookie.txt
 

@@ -14,6 +14,7 @@ Energy Logserver default plugins:
 - `01-input-snmp.conf`
 - `01-input-http.conf`
 - `01-input-file.conf`
+- `01-input-database.conf`
 - `020-filter-beats-syslog.conf`
 - `020-filter-network.conf`
 - `099-filter-geoip.conf`
@@ -33,10 +34,10 @@ This plugin wait for receiving data from remote beats services. It use tcp
 
 ### Getting data from share folder
 
-Using beats, you can download files from FTP, SFTP, SMB share.
+Using beats, you can reading data from FTP, SFTP, SMB share.
 Connection to remote resources should be done as follows:
 
-#### Connecting to FTP server
+#### Input - FTP server
 
 - Installation
 
@@ -50,7 +51,7 @@ Connection to remote resources should be done as follows:
 
 		urlftpfs ftp-user:ftp-pass@my-ftp-location.local /mnt/my_ftp/
 
-#### Connecting to SFTP server
+#### Input - SFTP server
 
 - Install the required packages
 
@@ -68,7 +69,7 @@ Connection to remote resources should be done as follows:
 
 		sshfs HOSTuser@remote.host.or.ip:/host/dir/to/mount ~/Desktop/sftp
 
-#### Connecting to SMB/CIFS server
+#### Input - SMB/CIFS server
 
 - Create local folder
 
@@ -147,6 +148,84 @@ This plugin stream events from files, normally by tailing them in a manner simil
 		    start_position => "beginning"
 		  }
 
+## Logstash - Input database
+
+This plugin can read data in any database with a JDBC interface into Logstash. You can periodically schedule ingestion using a cron syntax (see schedule setting) or run the query one time to load data into Logstash. Each row in the resultset becomes a single event. Columns in the resultset are converted into fields in the event.
+
+### Logasth input - MySQL
+ 
+Download jdbc driver: [https://dev.mysql.com/downloads/connector/j/](https://dev.mysql.com/downloads/connector/j/)
+
+Sample definition:
+
+	input {
+	  jdbc {
+	    jdbc_driver_library => "mysql-connector-java-5.1.36-bin.jar"
+	    jdbc_driver_class => "com.mysql.jdbc.Driver"
+	    jdbc_connection_string => "jdbc:mysql://localhost:3306/mydb"
+	    jdbc_user => "mysql"
+	    jdbc_password => "mysql"
+	    parameters => { "favorite_artist" => "Beethoven" }
+	    schedule => "* * * * *"
+	    statement => "SELECT * from songs where artist = :favorite_artist"
+	  }
+	}
+
+### Logasth input - MSSQL
+ 
+Download jdbc driver: [https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15](https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15)
+
+Sample definition:
+
+	input {
+	  jdbc {
+	    jdbc_driver_library => "./mssql-jdbc-6.2.2.jre8.jar"
+	    jdbc_driver_class => "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	    jdbc_connection_string => "jdbc:sqlserver://VB201001000;databaseName=Database;"
+	    jdbc_user => "mssql"
+	    jdbc_password => "mssql"
+	    jdbc_default_timezone => "UTC"
+	    statement_filepath => "/usr/share/logstash/plugin/query"
+	    schedule => "*/5 * * * *"
+	    sql_log_level => "warn"
+	    record_last_run => "false"
+	    clean_run => "true"
+	  }
+	}
+
+### Logstash input - Oracle
+Download jdbc driver: [https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+
+Sample definition:
+
+	input {
+	  jdbc {
+	    jdbc_driver_library => "./ojdbc8.jar"
+	    jdbc_driver_class => "oracle.jdbc.driver.OracleDriver" 
+	    jdbc_connection_string => "jdbc:oracle:thin:@hostname:PORT/SERVICE"
+	    jdbc_user => "oracle"
+	    jdbc_password => "oracle"
+	    parameters => { "favorite_artist" => "Beethoven" }
+	    schedule => "* * * * *"
+	    statement => "SELECT * from songs where artist = :favorite_artist"
+	  }
+	}
+
+### Logstash input - PostgreSQL
+Download jdbc driver: [https://jdbc.postgresql.org/download.html](https://jdbc.postgresql.org/download.html)
+
+Sample definition:
+
+	input {
+	    jdbc {
+	        jdbc_driver_library => "D:/postgresql-42.2.5.jar"
+	        jdbc_driver_class => "org.postgresql.Driver"
+	        jdbc_connection_string => "jdbc:postgresql://127.0.0.1:57610/mydb"
+	        jdbc_user => "myuser"
+	        jdbc_password => "mypw"
+	        statement => "select * from mytable"
+	    }
+	}
 
 ## Logstash - Filter "beats syslog" ##
 
@@ -209,7 +288,8 @@ This filter processing an event data with syslog type:
 					}
 		  }
 		}
-## Logstash Filter "network" ##
+
+## Logstash - Filter "network" ##
 
 This filter processing an event data with network type:
 

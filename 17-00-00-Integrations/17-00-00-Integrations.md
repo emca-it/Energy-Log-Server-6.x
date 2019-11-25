@@ -343,3 +343,97 @@ Before uploading index-pattern or dashboard you have to authorize yourself:
 
 		curl -XPUT "localhost:9200/_template/Energy Logserverperfdata" -H'Content-Type: application/json' -d@beats_template.json
 
+## Wazuh integration ##
+
+ITRS Log Analytics can integrate with the Wazuh, which is lightweight agent is designed to perform a number of tasks with the objective of detecting threats and, when necessary, trigger automatic responses. The agent core capabilities are:
+
+- Log and events data collection
+- File and registry keys integrity monitoring
+- Inventory of running processes and installed applications
+- Monitoring of open ports and network configuration
+- Detection of rootkits or malware artifacts
+- Configuration assessment and policy monitoring
+- Execution of active responses
+
+The Wazuh agents run on many different platforms, including Windows, Linux, Mac OS X, AIX, Solaris and HP-UX. They can be configured and managed from the Wazuh server.
+#### Deploying Wazuh Server ####
+
+https://documentation.wazuh.com/current/installation-guide/installing-wazuh-server/index.html#
+
+#### Deploing Wazuh Agent ####
+
+https://documentation.wazuh.com/current/installation-guide/installing-wazuh-agent/index.html
+
+#### Filebeat configuration ####
+
+## BRO integration ##
+## 2FA authorization with Google Auth Provider (example)
+
+### Software used (tested versions):
+- NGiNX (1.16.1 - from CentOS base reposiory)
+- oauth2_proxy (https://github.com/pusher/oauth2_proxy/releases - 4.0.0)
+
+### The NGiNX configuration:
+1. Copy the ng_oauth2_proxy.conf to `/etc/nginx/conf.d/`;
+1. Set `ssl_certificate` and `ssl_certificate_key` path in ng_oauth2_proxy.conf
+
+When SSL is set using nginx proxy, Kibana can be started with http. 
+However, if it is to be run with encryption, you also need to change `proxy_pass` to the appropriate one.
+
+### The `oauth2_proxy` configuration:
+
+1. Create a directory in which the program will be located and its configuration:
+
+		bash
+		mkdir -p /usr/share/oauth2_proxy/
+		mkdir -p /etc/oauth2_proxy/
+
+1. Copy files to directories:
+
+		bash
+		cp oauth2_proxy /usr/share/oauth2_proxy/
+		cp oauth2_proxy.cfg /etc/oauth2_proxy/
+		
+1. Set directives according to OAuth configuration in Google Cloud project
+
+		cfg
+		client_id =
+		client_secret =
+		# the following limits domains for authorization (* - all)
+		email_domains = [
+		  "*"
+		]
+
+1. Set the following according to the public hostname:
+
+cookie_domain = "kibana-host.org"
+
+1. In case 	og-in restrictions for a specific group defined on the Google side:
+	- Create administrative account: https://developers.google.com/identity/protocols/OAuth2ServiceAccount ; 
+	- Get configuration to JSON file and copy Client ID;
+	- On the dashboard of the Google Cloud select "APIs & Auth" -> "APIs";
+	- Click on "Admin SDK" and "Enable API";
+	- Follow the instruction at https://developers.google.com/admin-sdk/directory/v1/guides/delegation#delegate_domain-wide_authority_to_your_service_account and give the service account the following permissions:
+
+			https://www.googleapis.com/auth/admin.directory.group.readonly
+			https://www.googleapis.com/auth/admin.directory.user.readonly
+
+	- Follow the instructions to grant access to the Admin API https://support.google.com/a/answer/60757
+	- Create or select an existing administrative email in the Gmail domain to flag it `google-admin-email`
+	- Create or select an existing group to flag it `google-group`
+	- Copy the previously downloaded JSON file to `/etc/oauth2_proxy/`.
+	- In file `oauth2_proxy.cfg` wpisać odpowiednią ścieżkę w:
+
+
+			google_service_account_json =
+
+
+### Service start up
+
+- Start the NGiNX service 
+- Start the oauth2_proxy service
+
+		bash
+		/usr/share/oauth2_proxy/oauth2_proxy -config="/etc/oauth2_proxy/oauth2_proxy.cfg"
+
+In the browser enter the address pointing to the server with the Logserver installation

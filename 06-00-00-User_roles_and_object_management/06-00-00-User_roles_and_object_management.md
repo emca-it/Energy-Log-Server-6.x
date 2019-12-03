@@ -174,3 +174,15 @@ After you change password for one of the system account ( alert, intelligence, l
 
 			vi /etc/kibana/kibana.yml	
 			elastscheduler.password: "new_scheduler_password"
+
+1. Account **Logstash**
+	- Update the Logstash pipeline configuration files (*.conf) in output sections:
+			
+			vi /etc/logstash/conf.d/*.conf
+
+			elasticsearch {
+				hosts => ["localhost:9200"]
+				index => "syslog-%{+YYYY.MM}"
+				user => "logstash"
+				password => "new_password"
+			}

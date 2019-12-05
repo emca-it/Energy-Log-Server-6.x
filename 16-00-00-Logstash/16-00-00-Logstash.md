@@ -558,7 +558,76 @@ This Logstash plugin has example of complete configuration for integration with 
       }
     }
 
-## Enabling encryption ##
+## Single password in all Logstash outputs
+
+You can set passwords and other Logstash pipeline settings as environment variables. This can be useful if the password was changed for the `logastash` user and it must be to update in the configuration files.
+
+Configuration steps:
+
+1. Create the service file:
+
+	mkdir –p /etc/systemd/system/logstash.service.d
+	vi /etc/systemd/system/logstash.service.d/logstash.conf
+	
+			[Service]
+			Environment="ELASTICSEARCH_ES_USER=logserver"
+			Environment="ELASTICSEARCH_ES_PASSWD=logserver"
+
+1. Reload systemctl daemon:
+
+		systemctl daemon-reload
+
+1. Sample definition of Logstash output pipline seciotn:
+
+		output  {
+		  elasticsearch {
+		    index => "test-%{+YYYY.MM.dd}"
+		    user => "${ELASTICSEARCH_ES_USER:elastic}"
+		    password => "${ELASTICSEARCH_ES_PASSWD:changeme}"
+		  }
+		}
+
+## Secrets keystore for secure settings
+
+When you configure Logstash, you can use the Logstash keystore to securely store secret values for use in configuration settings (passwords, usernames, other settings).
+
+Configuration steps:
+
+1. Set the keystore password
+
+		vi /etc/sysconfi/logstash
+		LOGSTASH_KEYSTORE_PASS=keystorepass
+
+1. Create the new keystore:
+
+		/usr/share/logstash/bin/logstash-keystore create --path.settings /etc/logstash
+	During createation keystore you can provide the keysore passowrd
+
+1. Add new entry to keystore:
+
+		usr/share/logstash/bin/logstash-keystore add ES_PWD --path.settings /etc/logstash
+
+	When adding an entry to the keystore, set the value of the entry.
+
+1. Listing added entries:
+
+		/usr/share/logstash/bin/logstash-keystore list --path.settings /etc/logstash
+
+1. Removing entries:
+
+		/usr/share/logstash/bin/logstash-keystore remove ES_PWD --path.settings /etc/logstash
+
+Sample definition of Logstash output pipline seciotn:
+
+		output  {
+		  elasticsearch {
+		    index => "test-%{+YYYY.MM.dd}"
+		    user => "${ES_PWD}"
+		    password => "${ES_PWD}"
+		  }
+		}
+
+## Enabling encryption for Apache Kafka clients ##
 
 Kafka allows you to distribute the load between nodes receiving data and encrypts communication.
 

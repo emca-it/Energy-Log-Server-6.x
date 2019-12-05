@@ -477,8 +477,8 @@ In the browser enter the address pointing to the server with the Logserver insta
 
 1. Change Cerbero permissions
 
-	bash
-	chown -R cerebro:cerebro /opt/cerebro && chmod -R 700 /opt/cerebro
+		bash
+		chown -R cerebro:cerebro /opt/cerebro && chmod -R 700 /opt/cerebro
 
 1. Install Cerbero service ([cerebro.service](/files/cerebro.service)):
 
@@ -570,7 +570,7 @@ In the browser enter the address pointing to the server with the Logserver insta
 		systemctl start cerebro
 		goto: https://127.0.0.1:5602
 
-### Optional:
+### Optional configuration
 
 1. Register backup/snapshot repository for Elasticsearch
 

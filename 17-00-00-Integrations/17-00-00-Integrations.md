@@ -519,14 +519,16 @@ In the browser enter the address pointing to the server with the Logserver insta
 
 			hosts = [
 			  {
-			    host = "https://192.168.3.11:9200"
+			    host = "http://localhost:9200"
 			    name = "energy-logserver"
 			    auth = {
-			      username = "logserver"
-			      password = "logserver"
+			      username = "username"
+			      password = "password"
 			    }
 			  }
 			]
+
+	If needed uses secure connection (SSL) with Elasticsearch, set the following section that contains path to certificate. And change the host definition from `http` to `https`:
 
 			play.ws.ssl {
 			  trustManager = {

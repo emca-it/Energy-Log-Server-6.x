@@ -492,3 +492,68 @@ listing currently available core plugins:
 
 	sudo bin/elasticsearch-plugin remove [pluginname]
 	sudo bin/elasticsearch-plugin install [pluginname]
+
+## ROOTless management
+
+To configure Energy Logserver so its services can be managed without root access follow these steps:
+
+1. Create a file in `/etc/sudoers.d` (eg.: 10-logserver) with the content:
+
+		%kibana ALL=/bin/systemctl status kibana
+		%kibana ALL=/bin/systemctl status kibana.service
+		%kibana ALL=/bin/systemctl stop kibana
+		%kibana ALL=/bin/systemctl stop kibana.service
+		%kibana ALL=/bin/systemctl start kibana
+		%kibana ALL=/bin/systemctl start kibana.service
+		%kibana ALL=/bin/systemctl restart kibana
+		%kibana ALL=/bin/systemctl restart kibana.service
+		
+		%elasticsearch ALL=/bin/systemctl status elasticsearch
+		%elasticsearch ALL=/bin/systemctl status elasticsearch.service
+		%elasticsearch ALL=/bin/systemctl stop elasticsearch
+		%elasticsearch ALL=/bin/systemctl stop elasticsearch.service
+		%elasticsearch ALL=/bin/systemctl start elasticsearch
+		%elasticsearch ALL=/bin/systemctl start elasticsearch.service
+		%elasticsearch ALL=/bin/systemctl restart elasticsearch
+		%elasticsearch ALL=/bin/systemctl restart elasticsearch.service
+		
+		%alert ALL=/bin/systemctl status alert
+		%alert ALL=/bin/systemctl status alert.service
+		%alert ALL=/bin/systemctl stop alert
+		%alert ALL=/bin/systemctl stop alert.service
+		%alert ALL=/bin/systemctl start alert
+		%alert ALL=/bin/systemctl start alert.service
+		%alert ALL=/bin/systemctl restart alert
+		%alert ALL=/bin/systemctl restart alert.service
+		
+		%logstash ALL=/bin/systemctl status logstash
+		%logstash ALL=/bin/systemctl status logstash.service
+		%logstash ALL=/bin/systemctl stop logstash
+		%logstash ALL=/bin/systemctl stop logstash.service
+		%logstash ALL=/bin/systemctl start logstash
+		%logstash ALL=/bin/systemctl start logstash.service
+		%logstash ALL=/bin/systemctl restart logstash
+		%logstash ALL=/bin/systemctl restart logstash.service
+
+1. Change permissions for files and directories:
+
+	- Kibana, Elasticsearch, Alert)
+
+			bash
+			chmod g+rw /etc/kibana/kibana.yml /opt/alert/config.yaml /opt/ai/bin/conf.cfg /etc/elasticsearch/{elasticsearch.yml,jvm.options,log4j2.properties,properties.yml,role-mappings.yml}
+			chmod g+rwx /etc/kibana/ssl /etc/elasticsearch/ /opt/{ai,alert} /opt/ai/bin
+			chown -R elasticsearch:elasticsearch /etc/elasticsearch/
+			chown -R kibana:kibana /etc/kibana/ssl
+
+	- Logstash
+
+			find /etc/logstash -type f -exec chmod g+rw {} \;
+			find /etc/logstash -type d -exec chmod g+rwx {} \;
+			chown -R logstash:logstash /etc/logstash
+
+1. Add a user to groups defined earlier:
+
+		bash
+		usermod -a -G kibana,alert,elasticsearch,logstash service_user
+
+From now on this user should be able to start/stop/restart services and modify configurations files.

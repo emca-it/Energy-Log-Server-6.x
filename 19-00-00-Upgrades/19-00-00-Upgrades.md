@@ -164,18 +164,17 @@ There were changes to alert* indices in the newest version and this index have t
 		green open alert_silence     1bCdy2NaSYe5Ctc52cWD9A 1 1   0 0    460b    230b
 
 1. If you decided to keep old data you can now reindex them from indices you have created earlier:
-
-		bash
-		for idx_name in alert alert_error alert_past alert_silence alert_status; do echo ${idx_name}; curl -ulogserver:********* -X POST "elasticsearch_data_node:9200/_reindex" -H 'Content-Type: application/json' -d"
-		{
-		  "source": {
-		    "index": "${idx_name}-old"
-		  },
-		  "dest": {
-		    "index\": "${idx_name}"
-		  }
-		}"; echo; done
-
+```bash
+for idx_name in alert alert_error alert_past alert_silence alert_status; do echo ${idx_name}; curl -ulogserver:********* -X POST "elasticsearch_data_node:9200/_reindex" -H 'Content-Type: application/json' -d"
+{
+  "source": {
+    "index": "${idx_name}-old"
+  },
+  "dest": {
+    "index\": "${idx_name}"
+  }
+}"; echo; done
+```
 	- If you are sure that recovery was successful you can delete alert*-old:
 
 			curl -u logserver:********* "elasticsearch_data_node:9200/alert-old,alert_silence-old,alert_status-old,alert_error-old" -XDELETE

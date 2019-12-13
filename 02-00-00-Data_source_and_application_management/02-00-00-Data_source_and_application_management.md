@@ -537,7 +537,7 @@ To configure Energy Logserver so its services can be managed without root access
 
 1. Change permissions for files and directories:
 
-	- Kibana, Elasticsearch, Alert)
+	- Kibana, Elasticsearch, Alert
 
 			chmod g+rw /etc/kibana/kibana.yml /opt/alert/config.yaml /opt/ai/bin/conf.cfg /etc/elasticsearch/{elasticsearch.yml,jvm.options,log4j2.properties,properties.yml,role-mappings.yml}
 			chmod g+rwx /etc/kibana/ssl /etc/elasticsearch/ /opt/{ai,alert} /opt/ai/bin

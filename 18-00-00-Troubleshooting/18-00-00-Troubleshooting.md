@@ -2,6 +2,8 @@
 
 ## Recovery default base indexes ##
 
+Only applies to versions 6.1.5 and older. From version 6.1.6 and later, default indexes are created automatically
+
 If you lost or damage following index:
 		
         |Index name		 | Index ID              |

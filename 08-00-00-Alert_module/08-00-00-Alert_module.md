@@ -21,6 +21,8 @@ To enabling the alert module you should:
 
 - generate writeback index for Alert service:
 
+Only applies to versions 6.1.5 and older. From version 6.1.6 and later, the Alert index is created automatically
+
 		/opt/alert/bin/elastalert-create-index --config /opt/alert/config.yaml
 
 - configure the index pattern for alert*

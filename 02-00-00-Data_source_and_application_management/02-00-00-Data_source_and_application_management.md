@@ -561,8 +561,10 @@ From now on this user should be able to start/stop/restart services and modify c
 ### Generating Certificates
 
 1. Requirements for certificate configuration:
-- **To encrypt traffic (HTTP and transport layer) of Elasticsearch you have to generate certificate authority which will be used to sign each node certificate of a cluster.**
-- **Elasticsearch certificate has to be generated in pkcs8 RSA format.**
+
+	- **To encrypt traffic (HTTP and transport layer) of Elasticsearch you have to generate certificate authority which will be used to sign each node certificate of a cluster.**
+
+	- **Elasticsearch certificate has to be generated in pkcs8 RSA format.**
 
 1. Example certificate configuration (Certificates will be valid for 10 years based on this example):
 

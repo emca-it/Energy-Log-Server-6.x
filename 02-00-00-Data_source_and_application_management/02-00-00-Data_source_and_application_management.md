@@ -557,11 +557,15 @@ To configure Energy Logserver so its services can be managed without root access
 From now on this user should be able to start/stop/restart services and modify configurations files.
 
 ## Energy Logserver Elasticsearch encryption
-### 1. Generating Certificates
+
+### Generating Certificates
+
 1. Requirements for certificate configuration:
 - **To encrypt traffic (HTTP and transport layer) of Elasticsearch you have to generate certificate authority which will be used to sign each node certificate of a cluster.**
 - **Elasticsearch certificate has to be generated in pkcs8 RSA format.**
-2. Example certificate configuration (Certificates will be valid for 10 years based on this example):
+
+1. Example certificate configuration (Certificates will be valid for 10 years based on this example):
+
 ```bash
 # To make this process easier prepare some variables:
 DOMAIN=loganalytics-node.test
@@ -592,7 +596,9 @@ openssl x509 -req -in ${DOMAIN}.csr -CA rootCA.crt -CAkey rootCA.key -CAcreatese
 # Verify the validity of the generated certificate
 openssl x509 -in ${DOMAIN}.crt -text -noout
 ```
-3. Right now you should have these files:
+
+1. Right now you should have these files:
+
 ```
 $ ls -1 | sort
 loganalytics-node.test.crt
@@ -604,6 +610,7 @@ rootCA.key
 rootCA.srl
 ```
 1. Create a directory to store required files (users: elasticsearch, kibana and logstash have to be able to read these files):
+
 ```bash
 mkdir /etc/elasticsearch/ssl
 cp {loganalytics-node.test.crt,loganalytics-node.test.key,rootCA.crt} /etc/elasticsearch/ssl
@@ -611,7 +618,8 @@ chown -R elasticsearch:elasticsearch /etc/elasticsearch/ssl
 chmod 755 /etc/elasticsearch/ssl
 chmod 644 /etc/elasticsearch/ssl/*
 ```
-### 2. Setting up configuration files
+### Setting up configuration files
+
 1. Append or uncomment below lines in `/etc/elasticsearch/elasticsearch.yml` and change paths to proper values (based on past steps):
 ```yaml
 ## Transport layer encryption
@@ -643,7 +651,9 @@ logserverguard.ssl.http.enabled_ciphers:
 logserverguard.ssl.http.enabled_protocols:
  - "TLSv1.2"
 ```
-2. Append or uncomment below lines in `/etc/kibana/kibana.yml` and change paths to proper values:
+
+1. Append or uncomment below lines in `/etc/kibana/kibana.yml` and change paths to proper values:
+
 ```yaml
 # For below two, both IP or HOSTNAME (https://loganalytics-node.test:PORT) can be used because IP has been supplied in "alt_names"
 elasticsearch.url: "https://10.4.3.185:8000" # Default is "http://localhost:8000"
@@ -658,7 +668,8 @@ elasticsearch.ssl.key: "/etc/elasticsearch/ssl/loganalytics-node.test.key"
 elasticsearch.ssl.keyPassphrase: "password_for_pemkey" # this line is not required if there is no password
 elasticsearch.ssl.certificateAuthorities: "/etc/elasticsearch/ssl/rootCA.crt"
 ```
-3. Append or uncomment below lines in `/opt/alert/config.yaml` and change paths to proper values:
+1. Append or uncomment below lines in `/opt/alert/config.yaml` and change paths to proper values:
+
 ```yaml
 # Connect with TLS to Elasticsearch
 use_ssl: True
@@ -671,13 +682,15 @@ client_cert: /etc/elasticsearch/ssl/loganalytics-node.test.crt
 client_key: /etc/elasticsearch/ssl/loganalytics-node.test.key
 ca_certs: /etc/elasticsearch/ssl/rootCA.crt
 ```
-4. For CSV/HTML export to work properly rootCA.crt generated in first step has to be "installed" on the server. Below example for CentOS 7:
+1. For CSV/HTML export to work properly rootCA.crt generated in first step has to be "installed" on the server. Below example for CentOS 7:
+
 ```bash
 # Copy rootCA.crt and update CA trust store
 cp /etc/elasticsearch/ssl/rootCA.crt /etc/pki/ca-trust/source/anchors/rootCA.crt
 update-ca-trust
 ```
-5. Intelligence module. Generate pkcs12 keystore/cert:
+1. Intelligence module. Generate pkcs12 keystore/cert:
+
 ```bash
 DOMAIN=loganalytics-node.test
 keytool -import -file /etc/elasticsearch/ssl/rootCA.crt -alias root -keystore root.jks
@@ -691,8 +704,11 @@ https_keystore_pass=bla123
 https_truststore_pass=bla123
 ```
 ### Logstash/Beats
+
 You can eather install CA to allow Logstash and Beats traffic or you can supply required certificates in config:
+
 1. Logstash:
+
 ```conf
 output {
   elasticsearch {
@@ -705,7 +721,9 @@ output {
   }
 }
 ```
+
 2. Beats:
+
 ```yaml
 output.elasticsearch.hosts: ["https://loganalytics-node.test:9200"]
 output.elasticsearch.protocol: "https"

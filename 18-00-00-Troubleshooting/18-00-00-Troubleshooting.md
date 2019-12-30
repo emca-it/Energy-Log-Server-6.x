@@ -73,3 +73,35 @@ You may to recover it from default installation folder with following steps:
 1. Wait for green state of Elasticsearch cluster and then start the Logstash instances
 
 		systemctl start logstash
+
+## To many open files
+
+If you have a problem with too many open files by the Elasticsearch process, modify the values in the following configuration files:
+
+- /etc/sysconfig/elasticsearch
+- /etc/security/limits.d/30-elasticsearch.conf
+- /usr/lib/systemd/system/elasticsearch.service
+
+Check these three files for:
+
+- LimitNOFILE=65536
+- elasticsearch nofile 65537
+- MAX_OPEN_FILES=65537
+
+Changes to service file require:
+
+	systemctl daemon-reload
+
+And changes to limits.d require:
+
+	sysctl -p /etc/sysctl.d/90-elasticsearch.conf
+
+## The Kibana status code 500
+
+If the login page is displayed in Kibana, but after the attempt to login, the browser displays "error: 500", and the logs will show entries:
+
+	Error: Failed to encode cookie (sid-auth) value: Password string too short (min 32 characters required).
+
+Generate a new server.ironsecret with the following command:
+```bash
+echo "server.ironsecret: \"$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c32)\"" >> /etc/kibana/kibana.yml

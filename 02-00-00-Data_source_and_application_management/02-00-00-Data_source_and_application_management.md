@@ -566,7 +566,7 @@ From now on this user should be able to start/stop/restart services and modify c
 
 	- **Elasticsearch certificate has to be generated in pkcs8 RSA format.**
 
-1. Example certificate configuration (Certificates will be valid for 10 years based on this example):
+2. Example certificate configuration (Certificates will be valid for 10 years based on this example):
 
 ```bash
 # To make this process easier prepare some variables:
@@ -599,7 +599,7 @@ openssl x509 -req -in ${DOMAIN}.csr -CA rootCA.crt -CAkey rootCA.key -CAcreatese
 openssl x509 -in ${DOMAIN}.crt -text -noout
 ```
 
-1. Right now you should have these files:
+3. Right now you should have these files:
 
 ```
 $ ls -1 | sort
@@ -611,7 +611,7 @@ rootCA.crt
 rootCA.key
 rootCA.srl
 ```
-1. Create a directory to store required files (users: elasticsearch, kibana and logstash have to be able to read these files):
+4. Create a directory to store required files (users: elasticsearch, kibana and logstash have to be able to read these files):
 
 ```bash
 mkdir /etc/elasticsearch/ssl
@@ -654,7 +654,7 @@ logserverguard.ssl.http.enabled_protocols:
  - "TLSv1.2"
 ```
 
-1. Append or uncomment below lines in `/etc/kibana/kibana.yml` and change paths to proper values:
+2. Append or uncomment below lines in `/etc/kibana/kibana.yml` and change paths to proper values:
 
 ```yaml
 # For below two, both IP or HOSTNAME (https://loganalytics-node.test:PORT) can be used because IP has been supplied in "alt_names"
@@ -670,7 +670,7 @@ elasticsearch.ssl.key: "/etc/elasticsearch/ssl/loganalytics-node.test.key"
 elasticsearch.ssl.keyPassphrase: "password_for_pemkey" # this line is not required if there is no password
 elasticsearch.ssl.certificateAuthorities: "/etc/elasticsearch/ssl/rootCA.crt"
 ```
-1. Append or uncomment below lines in `/opt/alert/config.yaml` and change paths to proper values:
+3. Append or uncomment below lines in `/opt/alert/config.yaml` and change paths to proper values:
 
 ```yaml
 # Connect with TLS to Elasticsearch
@@ -684,14 +684,14 @@ client_cert: /etc/elasticsearch/ssl/loganalytics-node.test.crt
 client_key: /etc/elasticsearch/ssl/loganalytics-node.test.key
 ca_certs: /etc/elasticsearch/ssl/rootCA.crt
 ```
-1. For CSV/HTML export to work properly rootCA.crt generated in first step has to be "installed" on the server. Below example for CentOS 7:
+4. For CSV/HTML export to work properly rootCA.crt generated in first step has to be "installed" on the server. Below example for CentOS 7:
 
 ```bash
 # Copy rootCA.crt and update CA trust store
 cp /etc/elasticsearch/ssl/rootCA.crt /etc/pki/ca-trust/source/anchors/rootCA.crt
 update-ca-trust
 ```
-1. Intelligence module. Generate pkcs12 keystore/cert:
+5. Intelligence module. Generate pkcs12 keystore/cert:
 
 ```bash
 DOMAIN=loganalytics-node.test

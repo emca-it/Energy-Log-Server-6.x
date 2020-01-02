@@ -1,6 +1,6 @@
 # Integrations #
 
-## Setting up Naemon logs ##
+## OP5 - Naemon logs ##
 
 ### Logstash ###
 
@@ -33,7 +33,7 @@ sudo systemct restart logstash
 2. Install template by running:
 `./naemon_template.sh`
 
-## Energy Logserver Monitor ##
+### Energy Logserver Monitor ###
  
 1. On Energy Logserver Monitor host install filebeat (for instance via rpm `https://www.elastic.co/downloads/beats/filebeat`)
 1. In `/etc/filebeat/filebeat.yml` add:
@@ -66,7 +66,7 @@ sudo systemct restart logstash
 		sudo systemctl restart filebeat # RHEL/CentOS 7
 		sudo service filebeat restart # RHEL/CentOS 6
 
-## Elasticsearch ##
+### Elasticsearch ###
 
 At this moment there should be a new index on the Elasticsearch node:
 
@@ -79,7 +79,7 @@ Example output:
 
 If the index has been created, in order to browse and visualise the data, "index pattern" needs to be added in Kibana.
 
-## Sending Energy Logserver performance data to Elasticsearch node ##
+## OP5 - Performance data ##
 
 Below instruction requires that between Energy Logserver node and Elasticsearch node is working Logstash instance.
 

@@ -127,4 +127,10 @@ Energy-Log-Server-6.x User Guide
         :caption: Monitoring
 
        21-00-00-Monitoring/21-00-00-Monitoring.md
+	   
+.. toctree::
+        :maxdepth: 2
+        :caption: Kafka
+
+       22-00-00-Kafka/22-00-00-Kafka.md
        CHANGELOG.md

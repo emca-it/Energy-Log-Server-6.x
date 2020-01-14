@@ -497,7 +497,7 @@ listing currently available core plugins:
 
 To configure Energy Logserver so its services can be managed without root access follow these steps:
 
-1. Create a file in `/etc/sudoers.d` (eg.: 10-logserver) with the content:
+1. Create a file in `/etc/sudoers.d` (eg.: 10-logserver) with the content
 
 		%kibana ALL=/bin/systemctl status kibana
 		%kibana ALL=/bin/systemctl status kibana.service
@@ -535,7 +535,7 @@ To configure Energy Logserver so its services can be managed without root access
 		%logstash ALL=/bin/systemctl restart logstash
 		%logstash ALL=/bin/systemctl restart logstash.service
 
-1. Change permissions for files and directories:
+1. Change permissions for files and directories
 
   - Kibana, Elasticsearch, Alert
 
@@ -558,7 +558,7 @@ To configure Energy Logserver so its services can be managed without root access
   	
   	
 
-1. Add a user to groups defined earlier:
+1. Add a user to groups defined earlier
 
 		usermod -a -G kibana,alert,elasticsearch,logstash service_user
 

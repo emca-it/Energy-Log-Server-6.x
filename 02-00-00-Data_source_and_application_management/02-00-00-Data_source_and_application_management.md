@@ -535,7 +535,7 @@ To configure Energy Logserver so its services can be managed without root access
 		%logstash ALL=/bin/systemctl restart logstash
 		%logstash ALL=/bin/systemctl restart logstash.service
 
-1. Change permissions for files and directories
+2. Change permissions for files and directories
 
   - Kibana, Elasticsearch, Alert
 
@@ -558,7 +558,7 @@ To configure Energy Logserver so its services can be managed without root access
   	
   	
 
-1. Add a user to groups defined earlier
+3. Add a user to groups defined earlier
 
 		usermod -a -G kibana,alert,elasticsearch,logstash service_user
 
@@ -568,7 +568,7 @@ From now on this user should be able to start/stop/restart services and modify c
 
 ### Generating Certificates
 
-1. Requirements for certificate configuration:
+4. Requirements for certificate configuration:
 
 	- **To encrypt traffic (HTTP and transport layer) of Elasticsearch you have to generate certificate authority which will be used to sign each node certificate of a cluster.**
 
@@ -607,7 +607,7 @@ openssl x509 -req -in ${DOMAIN}.csr -CA rootCA.crt -CAkey rootCA.key -CAcreatese
 openssl x509 -in ${DOMAIN}.crt -text -noout
 ```
 
-3. Right now you should have these files:
+4. Right now you should have these files:
 
 ```
 $ ls -1 | sort

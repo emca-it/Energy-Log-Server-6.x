@@ -417,7 +417,7 @@ If you need to install Energy Logserver in non-default location, use the followi
 
 
 	- Redirect GUI to 443/tcp
-
+	
 				firewall-cmd --zone=public --add-masquerade --permanent
 				firewall-cmd --zone=public --add-forward-port=port=443:proto=tcp:toport=5601 --permanent
 				firewall-cmd --reload
@@ -444,25 +444,25 @@ The Elasticsearch provides two categories of plugins:
 Core Elasticsearch plugins can be installed as follows:
 
 	cd /usr/share/elasticsearch/ 
-    bin/elasticsearch-plugin install [plugin_name]
+	bin/elasticsearch-plugin install [plugin_name]
 
 Example:
 
 	bin/elasticsearch-plugin install ingest-geoip
+	
+	-> Downloading ingest-geoip from elastic
+	[=================================================] 100%  
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@ WARNING: plugin requires additional permissions @
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	* java.lang.RuntimePermission accessDeclaredMembers
+	* java.lang.reflect.ReflectPermission suppressAccessChecks
+	See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
+	for descriptions of what these permissions allow and the associated risks.
+	
+	Continue with installation? [y/N]y
+	-> Installed ingest-geoip
 
-    -> Downloading ingest-geoip from elastic
-    [=================================================] 100%  
-    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    @ WARNING: plugin requires additional permissions @
-    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    * java.lang.RuntimePermission accessDeclaredMembers
-    * java.lang.reflect.ReflectPermission suppressAccessChecks
-    See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
-    for descriptions of what these permissions allow and the associated risks.
-    
-    Continue with installation? [y/N]y
-    -> Installed ingest-geoip
-    
 Plugins from custom link or filesystem can be installed as follow:
 
 	cd /usr/share/elasticsearch/
@@ -537,18 +537,26 @@ To configure Energy Logserver so its services can be managed without root access
 
 1. Change permissions for files and directories:
 
-	- Kibana, Elasticsearch, Alert
+  - Kibana, Elasticsearch, Alert
 
-			chmod g+rw /etc/kibana/kibana.yml /opt/alert/config.yaml /opt/ai/bin/conf.cfg /etc/elasticsearch/{elasticsearch.yml,jvm.options,log4j2.properties,properties.yml,role-mappings.yml}
-			chmod g+rwx /etc/kibana/ssl /etc/elasticsearch/ /opt/{ai,alert} /opt/ai/bin
-			chown -R elasticsearch:elasticsearch /etc/elasticsearch/
-			chown -R kibana:kibana /etc/kibana/ssl
+     ```bash
+     chmod g+rw /etc/kibana/kibana.yml /opt/alert/config.yaml /opt/ai/bin/conf.cfg /etc/elasticsearch/{elasticsearch.yml,jvm.options,log4j2.properties,properties.yml,role-mappings.yml}
+     	chmod g+rwx /etc/kibana/ssl /etc/elasticsearch/ /opt/{ai,alert} /opt/ai/bin
+     	chown -R elasticsearch:elasticsearch /etc/elasticsearch/
+     	chown -R kibana:kibana /etc/kibana/ssl
+     ```
 
-	- Logstash
+     
 
-			find /etc/logstash -type f -exec chmod g+rw {} \;
-			find /etc/logstash -type d -exec chmod g+rwx {} \;
-			chown -R logstash:logstash /etc/logstash
+  - Logstash
+
+  		```bash
+  	find /etc/logstash -type f -exec chmod g+rw {} \;
+  		find /etc/logstash -type d -exec chmod g+rwx {} \;
+  		chown -R logstash:logstash /etc/logstash
+  	```
+  	
+  	
 
 1. Add a user to groups defined earlier:
 

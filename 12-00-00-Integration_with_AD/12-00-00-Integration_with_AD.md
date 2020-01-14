@@ -49,40 +49,40 @@ like. (It is important to take the interpreter to read these values
 ​​correctly).
 
 	ldaps:
-            - name: "example1.com"
-              host: "127.0.0.1,127.0.0.2"
-              port: 389 # optional, default 389
-              ssl_enabled: false # optional, default true
-              ssl_trust_all_certs: true # optional, default false
-              bind_dn: "admin@example1.com"
-              bind_password: "password" # generate encrypted password with /usr/share/elasticsearch/pass-encrypter/pass-encrypter.sh
-              search_user_base_DN: "OU=lab,DC=example1,DC=com"
-              user_id_attribute: "uid" # optional, default "uid"
-              search_groups_base_DN: "OU=lab,DC=example1,DC=com"
-              unique_member_attribute: "uniqueMember" # optional, default "uniqueMember"
-              connection_pool_size: 10 # optional, default 30
-              connection_timeout_in_sec: 10 # optional, default 1
-              request_timeout_in_sec: 10 # optional, default 1
-              cache_ttl_in_sec: 60 # optional, default 0 - cache disabled
-              service_principal_name: "esauth@example1.com" # optional, for sso
-              service_principal_name_password : "password" # optional, for sso
-            - name: "example2.com" #DOMAIN 2
-              host: "127.0.0.1,127.0.0.2"
-              port: 389 # optional, default 389
-              ssl_enabled: false # optional, default true
-              ssl_trust_all_certs: true # optional, default false
-              bind_dn: "admin@example2.com"
-              bind_password: "password" # generate encrypted password with /usr/share/elasticsearch/pass-encrypter/pass-encrypter.sh
-              search_user_base_DN: "OU=lab,DC=example2,DC=com"
-              user_id_attribute: "uid" # optional, default "uid"
-              search_groups_base_DN: "OU=lab,DC=example2,DC=com"
-              unique_member_attribute: "uniqueMember" # optional, default "uniqueMember"
-              connection_pool_size: 10 # optional, default 30
-              connection_timeout_in_sec: 10 # optional, default 1
-              request_timeout_in_sec: 10 # optional, default 1
-              cache_ttl_in_sec: 60 # optional, default 0 - cache disabled
-              service_principal_name: "esauth@example2.com" # optional, for sso
-              service_principal_name_password : "password" # optional, for ssl
+	        - name: "example1.com"
+	          host: "127.0.0.1,127.0.0.2"
+	          port: 389 # optional, default 389
+	          ssl_enabled: false # optional, default true
+	          ssl_trust_all_certs: true # optional, default false
+	          bind_dn: "admin@example1.com"
+	          bind_password: "password" # generate encrypted password with /usr/share/elasticsearch/pass-encrypter/pass-encrypter.sh
+	          search_user_base_DN: "OU=lab,DC=example1,DC=com"
+	          user_id_attribute: "uid" # optional, default "uid"
+	          search_groups_base_DN: "OU=lab,DC=example1,DC=com"
+	          unique_member_attribute: "uniqueMember" # optional, default "uniqueMember"
+	          connection_pool_size: 10 # optional, default 30
+	          connection_timeout_in_sec: 10 # optional, default 1
+	          request_timeout_in_sec: 10 # optional, default 1
+	          cache_ttl_in_sec: 60 # optional, default 0 - cache disabled
+	          service_principal_name: "esauth@example1.com" # optional, for sso
+	          service_principal_name_password : "password" # optional, for sso
+	        - name: "example2.com" #DOMAIN 2
+	          host: "127.0.0.1,127.0.0.2"
+	          port: 389 # optional, default 389
+	          ssl_enabled: false # optional, default true
+	          ssl_trust_all_certs: true # optional, default false
+	          bind_dn: "admin@example2.com"
+	          bind_password: "password" # generate encrypted password with /usr/share/elasticsearch/pass-encrypter/pass-encrypter.sh
+	          search_user_base_DN: "OU=lab,DC=example2,DC=com"
+	          user_id_attribute: "uid" # optional, default "uid"
+	          search_groups_base_DN: "OU=lab,DC=example2,DC=com"
+	          unique_member_attribute: "uniqueMember" # optional, default "uniqueMember"
+	          connection_pool_size: 10 # optional, default 30
+	          connection_timeout_in_sec: 10 # optional, default 1
+	          request_timeout_in_sec: 10 # optional, default 1
+	          cache_ttl_in_sec: 60 # optional, default 0 - cache disabled
+	          service_principal_name: "esauth@example2.com" # optional, for sso
+	          service_principal_name_password : "password" # optional, for ssl
 
 After completing the LDAP section entry in the `properties.yml` file,
 save the changes and restart the service with the command:
@@ -149,14 +149,14 @@ a section for configuring role mapping:
 This variable points to the file `/etc/elasticsearch/role-mappings.yml`
 Below is the sample content for this file:
 
+```
 admin:	
-
-	"CN=Admins,OU=lab,DC=dev,DC=it,DC=example,DC=com"
-
+"CN=Admins,OU=lab,DC=dev,DC=it,DC=example,DC=com"
 bank:
+"CN=security,OU=lab,DC=dev,DC=it,DC=example,DC=com"
+```
 
-	"CN=security,OU=lab,DC=dev,DC=it,DC=example,DC=com"
-
+**Attention. The role you define in the `role.mapping` file must be created in the Energy Logserver.**
 
 How to the mapping mechanism works ?
 An AD user log in to Energy Logserver. In the application there is a

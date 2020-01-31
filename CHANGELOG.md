@@ -1,8 +1,29 @@
 # **CHANGELOG** #
 
 ## Version 6.1.8
+
+### Added
+
++ Enhancements in Netflow support
++ Logtrail feature for covering all system components logs [kibana]
++ Cerebro Management tool support [kibana]
++ Automation for Bad IP reputation lists
++ Default Role integrated dynamically when working with AD accounts [elasticsearch-auth]
++ Explained additional logging class for elasticsearch in log4j
++ Detailed restore process of functional indexes [elasticsearch-auth]
++ AD/LDAP/SSO API - new endpoint /role-mapping/_reload [elasticsearch-auth]
++ License API - new endpoint /license/_reload [elasticsearch-auth]
++ Better radius integration with NAS-Identifier and NAS-IP-Address [elasticsearch-auth]
++ Skimmer components updated to 1.0.8
++ Backup script updated - utils/small_backup.sh
++ Java environment updated to branch v11
++ Network graph/corellation -  new vizualization type [kibana]
+
 ### CHANGED
-bugfix: CSV Export not working due to wrong binary definition
+
+- bugfix: CSV Export not working due to wrong binary definition
+- bugfix: Error when trying to delete alert rule with an apostrophe in the name
+- bugfix: Reading of configuration variables in the Config tab [kibana]
 
 ## Version 6.1.7
 
@@ -64,6 +85,7 @@ bugfix: CSV Export not working due to wrong binary definition
 - bugfix: CVE-2019-7608
 - bugfix: CVE-2019-7609
 - bugfix: CVE-2018-3830
+- bugfix: CVE-2019-14521
 - bugfix: filtering logo extension during upload and report generation
 - bugfix: improved verification for Create User
 - bugfix: report scheduling for AD users

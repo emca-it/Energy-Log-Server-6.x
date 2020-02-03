@@ -1,5 +1,69 @@
 # Upgrades #
 
+## Updating from 6.1.7
+
+1. Before the upgrade on both client and data node:
+
+- You have to upgrade JAVA version. After that set JAVA 11 with "alternatives":
+
+  ```bash
+  yum install java-11-openjdk-headless
+  
+  alternatives --config java
+  There is 2 program that provides 'java'.
+  
+    Selection    Command
+  -----------------------------------------------
+  *  1           java-1.8.0-openjdk.x86_64 (/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.el7_7.x86_64/jre/bin/java)
+   + 2           java-11-openjdk.x86_64 (/usr/lib/jvm/java-11-openjdk-11.0.6.10-1.el7_7.x86_64/bin/java)
+  
+  Enter to keep the current selection[+], or type selection number:
+  ```
+
+- Compare `jvm.options.rpmnew` to your current file. Garbage collector options have to be updated manually - otherwise Elasticsearch service will fail on restart:
+
+  ```bash
+  imdiff /etc/elasticsearch/jvm.options /etc/elasticsearch/jvm.options.rpmnew
+  ```
+
+  Old configuration:
+
+  ```bash
+  ## GC configuration
+  -XX:-UseParNewGC
+  -XX:-UseConcMarkSweepGC
+  -XX:MaxGCPauseMillis=200
+  -XX:+UseG1GC
+  -XX:GCPauseIntervalMillis=1000
+  -XX:InitiatingHeapOccupancyPercent=35
+  ```
+
+​		New configuration:
+
+```bash
+## GC configuration
+8-9:-XX:+UseConcMarkSweepGC
+8-9:-XX:CMSInitiatingOccupancyFraction=75
+8-9:-XX:+UseCMSInitiatingOccupancyOnly
+
+## G1GC Configuration
+# NOTE: G1GC is only supported on JDK version 10 or later.
+# To use G1GC uncomment the lines below.
+10-:-XX:+UseG1GC
+10-:-XX:MaxGCPauseMillis=300
+10-:-XX:G1ReservePercent=25
+10-:-XX:InitiatingHeapOccupancyPercent=30
+```
+
+2. Update rpms with yum:
+
+```bash
+yum update energy-logserver-client-node-6.1.8-1.x86_64.rpm
+yum update energy-logserver-data-node-6.1.8-1.x86_64.rpm
+```
+
+
+
 ## Updating from 6.1.6
 
 1. Client Node
@@ -24,7 +88,7 @@
 
 1. Reveiw *.rpmnew files (with vimdiff for example):
 
-		
+	
 		vimdiff /etc/kibana/kibana.yml /etc/kibana/kibana.yml.rpmnew
 		vimdiff /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.rpmnew
 
@@ -78,11 +142,11 @@ for idx_name in alert alert_error alert_past alert_silence alert_status; do echo
 }"; echo; done
 ```
 	- Delete temporary template:
-
+	
 			curl -ulogserver:********* "elasticsearch_data_node:9200/_template/alert_old" -XDELETE
-
+	
 	- Delete default template if you have one installed (you can recover it after installation):
-
+	
 			curl -ulogserver:********* "elasticsearch_data_node:9200/_template/default-system-indices" -XDELETE
 
 1. Delete old alert* indices:
@@ -173,11 +237,11 @@ for idx_name in alert alert_error alert_past alert_silence alert_status; do echo
 ```
 
 	- If you are sure that recovery was successful you can delete alert*-old:
-
+	
 			curl -u logserver:********* "elasticsearch_data_node:9200/alert-old,alert_silence-old,alert_status-old,alert_error-old" -XDELETE
-
+	
 	- Now you can recover the default template as well
-
+	
 			curl -XPUT -H 'Content-Type: application/json' -u logserver:********* "elasticsearch_data_node:9200/_template/default-base-template-0" -d@/usr/share/elasticsearch/default-base-template-0.json
 
 ## Updating from 6.1.3 and older

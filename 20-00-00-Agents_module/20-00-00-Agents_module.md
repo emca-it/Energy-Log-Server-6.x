@@ -1,8 +1,6 @@
 
 
-# 
-
-The Agents module
+#  The Agents module
 
 The Agents module is used for the central management of agents used in Energy Logserver such as Filebeat, Winlogbeat, Packetbeat, Metricbeat.# Agent installation #
 All necessary components can be found in the installation folder *${installation_folder}/utils/agents\_bin*.
@@ -176,8 +174,7 @@ It is recommended to run the Agent as a service in a given operating system.
   		systemctl enable  masteragent
   		systemctl start masteragent
 
-
-1. Windows host configuration
+3. Windows host configuration
 
   - Download the latest version of MasterAgnet, which includes: 
     - Agents.jar;

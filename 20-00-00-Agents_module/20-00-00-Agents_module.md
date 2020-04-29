@@ -1,11 +1,12 @@
 
 
-#  The Agents module
+#  Agents module
 
 The Agents module is used for the central management of agents used in Energy Logserver such as Filebeat, Winlogbeat, Packetbeat, Metricbeat.# Agent installation #
 All necessary components can be found in the installation folder *${installation_folder}/utils/agents\_bin*.
 
 ## Component modules ##
+
 The software consists of two modules:
 
 - Plugin Agents - installation just like any standard Kibana plugin. Before you run the module for the first time, you must add the mapping for the .agents index with the `create_temlate.sh` script
@@ -32,12 +33,14 @@ The software consists of two modules:
 		|connection_timeout   |Agent and Masteragent |No       |5                      |Timeout for https calls given in seconds.    |
 		|connection_reconnect |Agent and Masteragent |No       |5                      |Time in seconds that the agent should try to connect to the Logstash if error occur |
 
-## Installing the agent software ##
+## Installing agent software ##
 
 The Agent's software requires the correct installation of a Java Runtime Environment. The software has been tested on Oracle Java 8.
 It is recommended to run the Agent as a service in a given operating system.
 
-1. Generating the certificates - EDIT DOMAIN, DOMAIN_IP - use this scripts (from ./certificates directory 1/2/3.)"
+1. Generating the certificates - EDIT DOMAIN, DOMAIN_IP - use this scripts:
+
+    - create CA certificate and key:
 
     ```bash
     #!/bin/bash
@@ -52,7 +55,7 @@ It is recommended to run the Agent as a service in a given operating system.
     echo -e "${COUNTRYNAME}\n${STATE}\n\n${COMPANY}\n\n\n\n" | openssl       req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -out rootCA.crt
     
     ```
-
+   - create certificate and key for you domain:
     ```bash
     #!/bin/bash
     DOMAIN="localhost"
@@ -65,10 +68,12 @@ It is recommended to run the Agent as a service in a given operating system.
     openssl req -new -sha256 -key ${DOMAIN}.key -subj "/C=${COUNTRYNAME}/ST=${STATE}/O=${COMPANY}/CN=${DOMAIN}" -reqexts SAN -config <(cat /etc/pki/tls/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:${DOMAIN},IP:${DOMAIN_IP}")) -out ${DOMAIN}.csr
     
     openssl x509 -req -in ${DOMAIN}.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out ${DOMAIN}.crt -sha256 -extfile <(printf "[req]\ndefault_bits=2048\ndistinguished_name=req_distinguished_name\nreq_extensions=req_ext\n[req_distinguished_name]\ncountryName=${COUNTRYNAME}\nstateOrProvinceName=${STATE}\norganizationName=${COMPANY}\ncommonName=${DOMAIN}\n[req_ext]\nsubjectAltName=@alt_names\n[alt_names]\nDNS.1=${DOMAIN}\nIP=${DOMAIN_IP}\n") -days 3650 -extensions req_ext
-    
+    ```
+    - to verify certificate use following command:
+    ```bash
     openssl x509 -in ${DOMAIN}.crt -text -noout
     ```
-
+    - creating Java keystore, you will be asked for the password for the certificate key and whether the certificate should be trusted - enter "yes"
     ```bash
     #!/bin/bash
     DOMAIN="localhost"
@@ -76,11 +81,10 @@ It is recommended to run the Agent as a service in a given operating system.
     COUNTRYNAME="PL"
     STATE="Poland"
     COMPANY="ACME"
-    # You will be asked for a password and asked whether to use the certificate as trusted - enter "yes"
-    keytool -import -file rootCA.crt -alias root -keystore root.jks -storetype jks
+     keytool -import -file rootCA.crt -alias root -keystore root.jks -storetype jks
     openssl pkcs12 -export -in ${DOMAIN}.crt -inkey ${DOMAIN}.pre -out     node_name.p12 -name "${DOMAIN}" -certfile rootCA.crt
     ```
-
+   
 1. Linux host configuration
 
   - To install the MasterAgent on Linux RH / Centos, the net-tools package must be installed:
